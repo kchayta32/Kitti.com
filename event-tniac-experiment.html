@@ -612,6 +612,15 @@
                     <span class="tab-date">24 ม.ค. 2569</span>
                     <span class="tab-time">23:59</span>
                 </a>
+                <a href="#log-25jan-1510" class="timeline-tab" onclick="scrollToLog(event, 'log-25jan-1510')">
+                    <i class="fas fa-brain"></i>
+                    <span class="tab-date">25 ม.ค. 2569</span>
+                    <span class="tab-time">15:10</span>
+                </a>
+                <a href="#log-25jan-1524" class="timeline-tab" onclick="scrollToLog(event, 'log-25jan-1524')">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="tab-date">ผลเทรนเสร็จ</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -1707,6 +1716,688 @@
                                 COCO-Bridge เป็นภาพ "ชิ้นส่วนสะพาน" ไม่ได้มี "คานยาวทั้งเส้น" ทุกภาพ — ตอน prototype
                                 เน้นวัด orientation ของชิ้นส่วน ให้ "ระบบคำนวณมุม + แจ้งเตือนทำงาน" ก่อน แล้วค่อยสร้าง
                                 custom beam-tilt simulation dataset</p>
+                        </div>
+                    </div>
+
+                    <!-- ======= NEW LOG: 25 ม.ค. 2569 15:10 น. - YOLO TRAINING ======= -->
+                    <div id="log-25jan-1510" class="log-section"></div>
+
+                    <!-- Log Entry Divider -->
+                    <div style="text-align: center; margin: 3rem 0 2rem;">
+                        <span
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600;">
+                            <i class="fas fa-brain"></i> บันทึก 25 ม.ค. 2569 เวลา 15:10 น.
+                        </span>
+                    </div>
+
+                    <!-- YOLO Training Log -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-robot"></i> เทรนโมเดล construction-ppe.yaml ด้วย yolo26n.pt บนโปรแกรม
+                            MATLAB</h4>
+
+                        <!-- Summary Box -->
+                        <div class="highlight-box"
+                            style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-left-color: #667eea;">
+                            <p style="margin: 0;"><i class="fas fa-info-circle"></i> <strong>สรุป:</strong>
+                                เริ่มเทรน YOLOv26n บน dataset construction-ppe (1,132 train / 143 val images)
+                                โดยทดลองทั้งบน AMD GPU (DirectML) และ CPU</p>
+                        </div>
+
+                        <!-- Model Info -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-cog"></i> ข้อมูลโมเดลและ Dataset
+                        </h5>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--orange-main);">YOLOv26n
+                                </div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">โมเดลที่ใช้</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--blue-main);">11</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">จำนวน Classes</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">1,132</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">Train Images</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6;">143</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">Val Images</div>
+                            </div>
+                        </div>
+
+                        <!-- Model Architecture -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-project-diagram"></i> สถาปัตยกรรมโมเดล YOLO26n
+                        </h5>
+                        <div class="card"
+                            style="padding: 1rem; background: #1e293b; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.75rem; overflow-x: auto; max-height: 250px;">
+                            <pre style="margin: 0; white-space: pre;">YOLO26n summary: 260 layers, 2,508,090 parameters, 5.8 GFLOPs
+
+Key Modules:
+- Conv layers: 3x3 stride 2 for downsampling
+- C3k2 blocks: Feature extraction
+- SPPF: Spatial Pyramid Pooling Fast
+- C2PSA: Cross-Stage Partial with Spatial Attention
+- Upsample + Concat: Feature fusion
+- Detect head: Multi-scale detection [64, 128, 256]
+
+Transferred 606/708 items from pretrained weights</pre>
+                        </div>
+
+                        <!-- Attempt 1: AMD GPU -->
+                        <h5 style="color: #ef4444; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-exclamation-triangle"></i> การทดสอบที่ 1: AMD GPU (DirectML)
+                        </h5>
+                        <div class="highlight-box"
+                            style="background: rgba(239, 68, 68, 0.1); border-left-color: #ef4444;">
+                            <p style="margin: 0 0 0.5rem;"><strong>ผลลัพธ์:</strong> ❌ ล้มเหลว</p>
+                            <p style="margin: 0; font-size: 0.9rem;">Error:
+                                <code>DirectML scatter doesn't allow partially modified dimensions</code>
+                            </p>
+                        </div>
+                        <div class="card" style="padding: 1rem; margin-top: 1rem;">
+                            <div class="code-block" style="font-size: 0.75rem; max-height: 150px; overflow-y: auto;">
+                                <span class="comment">% คำสั่ง MATLAB</span><br>
+                                >> system("python train_amd.py");<br><br>
+                                <span class="keyword">Device:</span> privateuseone:0<br>
+                                <span class="keyword">batch:</span> 4, <span class="keyword">epochs:</span> 100, <span
+                                    class="keyword">imgsz:</span> 640<br><br>
+                                <span style="color: #ef4444;">✗ Error during training: DirectML scatter doesn't allow
+                                    partially modified dimensions.</span>
+                            </div>
+                        </div>
+
+                        <!-- Attempt 2: CPU -->
+                        <h5 style="color: #22c55e; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-check-circle"></i> การทดสอบที่ 2: CPU (Fallback)
+                        </h5>
+                        <div class="highlight-box"
+                            style="background: rgba(34, 197, 94, 0.1); border-left-color: #22c55e;">
+                            <p style="margin: 0 0 0.5rem;"><strong>ผลลัพธ์:</strong> ✅ สำเร็จ (กำลังเทรน)</p>
+                            <p style="margin: 0; font-size: 0.9rem;">Device: CPU (AMD Ryzen 7 5825U) | ~11-14 นาที/epoch
+                            </p>
+                        </div>
+                        <div class="card" style="padding: 1rem; margin-top: 1rem;">
+                            <div class="code-block" style="font-size: 0.75rem; max-height: 150px; overflow-y: auto;">
+                                <span class="comment">% คำสั่ง MATLAB</span><br>
+                                >> system("yolo detect train data=construction-ppe.yaml model=yolo26n.pt epochs=100
+                                imgsz=640");<br><br>
+                                <span class="keyword">Device:</span> cpu<br>
+                                <span class="keyword">batch:</span> 16, <span class="keyword">epochs:</span> 100, <span
+                                    class="keyword">imgsz:</span> 640<br>
+                                <span class="keyword">optimizer:</span> MuSGD(lr=0.000667, momentum=0.9)
+                            </div>
+                        </div>
+
+                        <!-- Training Progress -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-chart-line"></i> ความคืบหน้าการเทรน (Epoch 1-8)
+                        </h5>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                                <thead>
+                                    <tr style="background: rgba(249, 115, 22, 0.1);">
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            Epoch</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            box_loss</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            cls_loss</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            mAP50</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            mAP50-95</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            เวลา</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.970</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            4.849</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0313</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0126</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~18 นาที</td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            2</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.793</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            4.772</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0366</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0155</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~14 นาที</td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            3</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.799</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            4.511</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            0.0924</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.043</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~12 นาที</td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            4</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.743</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            3.979</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            0.131</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0633</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~11 นาที</td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            5</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.777</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            3.596</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            0.177</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.0888</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~11 นาที</td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            6</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.744</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            3.300</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            0.208</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.108</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~11 นาที</td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            7</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            1.724</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            3.111</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            0.254</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            0.129</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            ~14 นาที</td>
+                                    </tr>
+                                    <tr style="background: rgba(34, 197, 94, 0.1);">
+                                        <td style="padding: 0.5rem; text-align: center; font-weight: 600;">8</td>
+                                        <td style="padding: 0.5rem; text-align: center; font-weight: 600;">1.726</td>
+                                        <td style="padding: 0.5rem; text-align: center; font-weight: 600;">2.931</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; color: #22c55e; font-weight: 700;">
+                                            0.254+</td>
+                                        <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.129+</td>
+                                        <td style="padding: 0.5rem; text-align: center;">กำลังดำเนินการ...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Key Observations -->
+                        <h5 style="color: #8b5cf6; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-lightbulb"></i> ข้อสังเกตสำคัญ
+                        </h5>
+                        <ul style="color: var(--gray-700); padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>AMD GPU (DirectML)</strong> ยังไม่รองรับ operator
+                                บางตัวของ YOLOv26 ต้อง fallback ไป CPU</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>mAP50 เพิ่มขึ้นต่อเนื่อง</strong>: 3.1% → 25.4%
+                                ใน 7 epochs</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>cls_loss ลดลงดี</strong>: 4.849 → 2.931
+                                แสดงว่าโมเดลเรียนรู้ class ได้ดี</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>เวลาเทรน ~11-14 นาที/epoch</strong> บน CPU (Ryzen
+                                7 5825U)</li>
+                            <li><strong>คาดว่าจะเสร็จ 100 epochs</strong> ใน ~18-20 ชั่วโมง</li>
+                        </ul>
+
+                        <!-- Output Path -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-folder"></i> ผลลัพธ์บันทึกไปที่
+                        </h5>
+                        <div class="code-block" style="font-size: 0.8rem;">
+                            G:\ประกวด 2026\tniac2026\PPE in MATLAB\runs\detect\train10\
+                        </div>
+
+                        <!-- Next Steps -->
+                        <div class="highlight-box" style="margin-top: 1.5rem; margin-bottom: 0;">
+                            <p style="margin: 0;"><i class="fas fa-arrow-right"></i> <strong>ขั้นตอนถัดไป:</strong>
+                                รอเทรนครบ 100 epochs แล้วนำ best.pt ไปทดสอบ inference บนวิดีโอจริง พร้อมวัด FPS/Latency
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ======= NEW LOG: 25 ม.ค. 2569 - TRAINING RESULTS ======= -->
+                    <div id="log-25jan-1524" class="log-section"></div>
+
+                    <!-- Log Entry Divider -->
+                    <div style="text-align: center; margin: 3rem 0 2rem;">
+                        <span
+                            style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600;">
+                            <i class="fas fa-chart-bar"></i> ผลการเทรน YOLOv26n - 100 Epochs เสร็จสมบูรณ์!
+                        </span>
+                    </div>
+
+                    <!-- Training Results -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-trophy"></i> ผลการเทรนโมเดล construction-ppe (100 Epochs)</h4>
+
+                        <!-- Summary Box -->
+                        <div class="highlight-box"
+                            style="background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%); border-left-color: #22c55e;">
+                            <p style="margin: 0;"><i class="fas fa-check-circle"></i> <strong>เทรนเสร็จสมบูรณ์!</strong>
+                                YOLOv26n เทรนครบ 100 epochs บน CPU (AMD Ryzen 7 5825U) ใช้เวลารวม ~16 ชั่วโมง</p>
+                        </div>
+
+                        <!-- Final Metrics -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-tachometer-alt"></i> ค่า Metrics สุดท้าย (Epoch 100)
+                        </h5>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="card"
+                                style="padding: 1rem; text-align: center; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.2) 100%); border: 2px solid #22c55e;">
+                                <div style="font-size: 1.75rem; font-weight: 700; color: #22c55e;">0.469</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">mAP50</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.75rem; font-weight: 700; color: var(--blue-main);">0.261</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">mAP50-95</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.75rem; font-weight: 700; color: var(--orange-main);">0.582
+                                </div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">Precision</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center;">
+                                <div style="font-size: 1.75rem; font-weight: 700; color: #8b5cf6;">0.451</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">Recall</div>
+                            </div>
+                        </div>
+
+                        <!-- Training Curves Image -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-chart-line"></i> Training & Validation Curves
+                        </h5>
+                        <div
+                            style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+                            <img src="images/tniac-training/training_curves.png"
+                                alt="Training Curves - Loss, Precision, Recall, mAP"
+                                style="width: 100%; border-radius: 8px;">
+                            <p
+                                style="margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--gray-600); text-align: center;">
+                                <i class="fas fa-info-circle"></i> กราฟแสดง train/val loss ลดลงต่อเนื่อง, mAP50
+                                เพิ่มขึ้นถึง ~0.5 ใน epoch หลังๆ
+                            </p>
+                        </div>
+
+                        <!-- Confusion Matrix -->
+                        <h5 style="color: #8b5cf6; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-th"></i> Confusion Matrix (Normalized)
+                        </h5>
+                        <div
+                            style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+                            <img src="images/tniac-training/confusion_matrix.png" alt="Confusion Matrix Normalized"
+                                style="width: 100%; border-radius: 8px;">
+                            <p
+                                style="margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--gray-600); text-align: center;">
+                                <i class="fas fa-info-circle"></i> Class ที่ตรวจจับดี: Person (0.87), Helmet (0.79),
+                                Vest (0.74), Boots (0.72)
+                            </p>
+                        </div>
+
+                        <!-- Class Performance Table -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-list-ol"></i> ผลการตรวจจับแต่ละ Class
+                        </h5>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                                <thead>
+                                    <tr style="background: rgba(249, 115, 22, 0.1);">
+                                        <th
+                                            style="padding: 0.5rem; text-align: left; border-bottom: 2px solid var(--orange-main);">
+                                            Class</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            Accuracy</th>
+                                        <th
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 2px solid var(--orange-main);">
+                                            สถานะ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: rgba(34, 197, 94, 0.1);">
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Person</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 700;">
+                                            87%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ดีมาก</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Helmet</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            79%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ดี</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Vest</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            74%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ดี</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Boots</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); color: #22c55e; font-weight: 600;">
+                                            72%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ดี</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Gloves</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); font-weight: 600;">
+                                            65%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: var(--orange-main); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ปานกลาง</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>None (no PPE)</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); font-weight: 600;">
+                                            49%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ต้องปรับปรุง</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background: rgba(0,0,0,0.02);">
+                                        <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                            <strong>Goggles</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200); font-weight: 600;">
+                                            36%</td>
+                                        <td
+                                            style="padding: 0.5rem; text-align: center; border-bottom: 1px solid var(--gray-200);">
+                                            <span
+                                                style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ต้องปรับปรุง</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.5rem;"><strong>no_helmet, no_goggle, no_gloves,
+                                                no_boots</strong></td>
+                                        <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0-11%</td>
+                                        <td style="padding: 0.5rem; text-align: center;"><span
+                                                style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">ข้อมูลน้อย</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Labels Distribution -->
+                        <h5 style="color: #22c55e; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-chart-bar"></i> Labels Distribution & Bounding Box Analysis
+                        </h5>
+                        <div
+                            style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+                            <img src="images/tniac-training/labels_analysis.jpg"
+                                alt="Labels Distribution and Bounding Box Analysis"
+                                style="width: 100%; border-radius: 8px;">
+                            <p
+                                style="margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--gray-600); text-align: center;">
+                                <i class="fas fa-info-circle"></i> Person (1,769) มีจำนวนมากที่สุด, no_boots (88)
+                                มีน้อยที่สุด
+                            </p>
+                        </div>
+
+                        <!-- Results CSV -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-file-csv"></i> results.csv - ค่า Metrics ทุก Epoch
+                        </h5>
+                        <div
+                            style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+                            <img src="images/tniac-training/results_csv.jpg"
+                                alt="results.csv - Training Metrics per Epoch" style="width: 100%; border-radius: 8px;">
+                            <p
+                                style="margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--gray-600); text-align: center;">
+                                <i class="fas fa-info-circle"></i> บันทึกค่า loss, metrics, learning rate ทุก epoch
+                            </p>
+                        </div>
+
+                        <!-- Performance Curves -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-chart-area"></i> Performance Curves
+                        </h5>
+
+                        <!-- F1-Confidence & Precision-Confidence (2 columns) -->
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <div
+                                style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <img src="images/tniac-training/F1_curve.png" alt="F1-Confidence Curve"
+                                    style="width: 100%; border-radius: 8px;">
+                                <p
+                                    style="margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--gray-600); text-align: center;">
+                                    <strong>F1-Confidence Curve</strong><br>
+                                    All classes: F1=0.46 @ conf=0.197
+                                </p>
+                            </div>
+                            <div
+                                style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <img src="images/tniac-training/P_curve.png" alt="Precision-Confidence Curve"
+                                    style="width: 100%; border-radius: 8px;">
+                                <p
+                                    style="margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--gray-600); text-align: center;">
+                                    <strong>Precision-Confidence Curve</strong><br>
+                                    All classes: P=1.00 @ conf=0.981
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- PR & Recall-Confidence (2 columns) -->
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div
+                                style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <img src="images/tniac-training/PR_curve.png" alt="Precision-Recall Curve"
+                                    style="width: 100%; border-radius: 8px;">
+                                <p
+                                    style="margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--gray-600); text-align: center;">
+                                    <strong>Precision-Recall Curve</strong><br>
+                                    All classes: mAP@0.5 = 0.491
+                                </p>
+                            </div>
+                            <div
+                                style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <img src="images/tniac-training/R_curve.png" alt="Recall-Confidence Curve"
+                                    style="width: 100%; border-radius: 8px;">
+                                <p
+                                    style="margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--gray-600); text-align: center;">
+                                    <strong>Recall-Confidence Curve</strong><br>
+                                    All classes: R=0.76 @ conf=0.000
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Per-Class mAP from PR Curve -->
+                        <div class="highlight-box"
+                            style="background: rgba(249, 115, 22, 0.1); border-left-color: var(--orange-main); margin-bottom: 1.5rem;">
+                            <p style="margin: 0 0 0.5rem;"><strong><i class="fas fa-chart-pie"></i> mAP@0.5 แต่ละ Class
+                                    (จาก PR Curve):</strong></p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.85rem;">
+                                <span
+                                    style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px;">Person:
+                                    0.894</span>
+                                <span
+                                    style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px;">Vest:
+                                    0.789</span>
+                                <span
+                                    style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px;">Helmet:
+                                    0.786</span>
+                                <span
+                                    style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px;">Boots:
+                                    0.763</span>
+                                <span
+                                    style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px;">Gloves:
+                                    0.727</span>
+                                <span
+                                    style="background: var(--orange-main); color: white; padding: 2px 8px; border-radius: 12px;">None:
+                                    0.487</span>
+                                <span
+                                    style="background: var(--orange-main); color: white; padding: 2px 8px; border-radius: 12px;">Goggles:
+                                    0.480</span>
+                                <span
+                                    style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px;">no_helmet:
+                                    0.243</span>
+                                <span
+                                    style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px;">no_gloves:
+                                    0.107</span>
+                                <span
+                                    style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px;">no_goggle:
+                                    0.104</span>
+                                <span
+                                    style="background: #ef4444; color: white; padding: 2px 8px; border-radius: 12px;">no_boots:
+                                    0.020</span>
+                            </div>
+                        </div>
+
+                        <!-- Key Insights -->
+                        <h5 style="color: #8b5cf6; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-lightbulb"></i> สรุปผลการเทรน
+                        </h5>
+                        <ul style="color: var(--gray-700); padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>mAP50 = 0.469 (46.9%)</strong> —
+                                ถือว่าใช้งานได้สำหรับ PPE detection เบื้องต้น</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Person ตรวจจับดีที่สุด (87%)</strong> —
+                                เป็นพื้นฐานสำคัญในการตรวจสอบ PPE</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Helmet, Vest, Boots >= 72%</strong> — PPE
+                                หลักตรวจจับดี</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Goggles และ "no_" classes ต่ำ</strong> —
+                                ต้องการข้อมูลเพิ่ม</li>
+                            <li><strong>เวลาเทรนรวม ~16 ชั่วโมง</strong> บน CPU</li>
+                        </ul>
+
+                        <!-- Next Steps -->
+                        <div class="highlight-box"
+                            style="margin-top: 1.5rem; margin-bottom: 0; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.2) 100%); border-left-color: #22c55e;">
+                            <p style="margin: 0;"><i class="fas fa-rocket"></i> <strong>ขั้นตอนถัดไป:</strong>
+                                นำ <code>best.pt</code> ไปทดสอบ inference บนวิดีโอจริง/webcam พร้อมวัด FPS และ Latency
+                            </p>
                         </div>
                     </div>
                 </div>

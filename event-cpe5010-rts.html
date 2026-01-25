@@ -102,6 +102,262 @@
                         </div>
                     </div>
 
+                    <!-- HTML5 Development Plan -->
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);">
+                        <h4><i class="fas fa-rocket"></i> แผนการพัฒนาเกม HTML5</h4>
+
+                        <!-- Goal -->
+                        <div
+                            style="background: var(--gradient-blue); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                            <h5 style="margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-bullseye"></i> เป้าหมาย
+                            </h5>
+                            <p style="margin: 0; opacity: 0.95;">สร้างเกม RTS (Real-Time Strategy) ที่เล่นได้จริงบน Web
+                                Browser โดยใช้ <strong>HTML5 Canvas</strong> และ <strong>Vanilla JavaScript</strong>
+                                โดยอ้างอิงฟีเจอร์จากเกม Unity ที่มีอยู่</p>
+                        </div>
+
+                        <!-- Core Features -->
+                        <h5 style="color: var(--orange-main); margin-bottom: 1rem;">
+                            <i class="fas fa-cogs"></i> ฟีเจอร์หลักที่จะสร้าง
+                        </h5>
+
+                        <!-- 1. Core Game Engine -->
+                        <div class="card"
+                            style="padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--blue-main);">
+                            <h6 style="margin: 0 0 0.75rem; color: var(--blue-main);">
+                                <i class="fas fa-microchip"></i> 1. Core Game Engine
+                            </h6>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: var(--gray-700);">
+                                <li><strong>Canvas Rendering</strong> - วาดแผนที่, หน่วยรบ, UI บน HTML5 Canvas</li>
+                                <li><strong>Game Loop</strong> - 60 FPS update/render cycle</li>
+                                <li><strong>Input System</strong> - การคลิกเลือกหน่วย, การสั่งเคลื่อนที่, การโจมตี</li>
+                            </ul>
+                        </div>
+
+                        <!-- 2. Units System -->
+                        <div class="card"
+                            style="padding: 1rem; margin-bottom: 1rem; border-left: 4px solid var(--orange-main);">
+                            <h6 style="margin: 0 0 0.75rem; color: var(--orange-main);">
+                                <i class="fas fa-chess-knight"></i> 2. ระบบหน่วยรบ (Units)
+                            </h6>
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                                    <thead>
+                                        <tr style="background: rgba(249, 115, 22, 0.1);">
+                                            <th
+                                                style="padding: 0.5rem; text-align: left; border-bottom: 2px solid var(--orange-main);">
+                                                ประเภท</th>
+                                            <th
+                                                style="padding: 0.5rem; text-align: left; border-bottom: 2px solid var(--orange-main);">
+                                                ตัวอย่าง</th>
+                                            <th
+                                                style="padding: 0.5rem; text-align: left; border-bottom: 2px solid var(--orange-main);">
+                                                บทบาท</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">⚔️
+                                                ทหารราบ</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                พลดาบ, พลหอก</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                พื้นฐาน</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">🐎
+                                                ม้า</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                ม้าศึก</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                โจมตีเร็ว</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">🐘
+                                                ช้างศึก</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                ช้างศึก</td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--gray-200);">
+                                                Tank/Siege</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem;">🏹 ธนู</td>
+                                            <td style="padding: 0.5rem;">นักธนู</td>
+                                            <td style="padding: 0.5rem;">ระยะไกล</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 3. Resources -->
+                        <div class="card" style="padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #22c55e;">
+                            <h6 style="margin: 0 0 0.75rem; color: #22c55e;">
+                                <i class="fas fa-coins"></i> 3. ระบบทรัพยากร
+                            </h6>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.5rem;">🌾</span>
+                                    <div>
+                                        <strong>อาหาร</strong>
+                                        <div style="font-size: 0.85rem; color: var(--gray-600);">จากนาข้าว/ฟาร์ม</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.5rem;">💰</span>
+                                    <div>
+                                        <strong>ทอง</strong>
+                                        <div style="font-size: 0.85rem; color: var(--gray-600);">จากเหมือง/การค้า</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. AI System -->
+                        <div class="card" style="padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
+                            <h6 style="margin: 0 0 0.75rem; color: #ef4444;">
+                                <i class="fas fa-robot"></i> 4. ระบบ AI ศัตรู
+                            </h6>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: var(--gray-700);">
+                                <li>Patrol หน่วยในพื้นที่</li>
+                                <li>โจมตีเมื่อพบศัตรู</li>
+                                <li>การเคลื่อนที่แบบ A* Pathfinding (simplified)</li>
+                            </ul>
+                        </div>
+
+                        <!-- 5. UI/HUD -->
+                        <div class="card" style="padding: 1rem; margin-bottom: 1.5rem; border-left: 4px solid #8b5cf6;">
+                            <h6 style="margin: 0 0 0.75rem; color: #8b5cf6;">
+                                <i class="fas fa-desktop"></i> 5. UI/HUD
+                            </h6>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: var(--gray-700);">
+                                <li>แถบทรัพยากร (บน)</li>
+                                <li>Minimap (ล่างซ้าย)</li>
+                                <li>ข้อมูลหน่วย + คำสั่ง (ล่าง)</li>
+                            </ul>
+                        </div>
+
+                        <!-- File Structure -->
+                        <h5 style="color: var(--blue-main); margin-bottom: 1rem;">
+                            <i class="fas fa-folder-tree"></i> โครงสร้างไฟล์
+                        </h5>
+                        <div class="card"
+                            style="padding: 1rem; background: #1e293b; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.8rem; overflow-x: auto;">
+                            <pre style="margin: 0; white-space: pre;">RTS ยุทธการไทย/
+├── html5-game/
+│   ├── index.html          # หน้าเกมหลัก
+│   ├── css/
+│   │   └── game.css        # สไตล์เกม
+│   ├── js/
+│   │   ├── main.js         # Entry point
+│   │   ├── engine/
+│   │   │   ├── Game.js     # Game loop & state
+│   │   │   ├── Input.js    # Mouse/Keyboard handling
+│   │   │   └── Camera.js   # Viewport control
+│   │   ├── entities/
+│   │   │   ├── Unit.js     # หน่วยรบ
+│   │   │   ├── Building.js # อาคาร
+│   │   │   └── Resource.js # จุดทรัพยากร
+│   │   ├── systems/
+│   │   │   ├── Combat.js   # ระบบการต่อสู้
+│   │   │   ├── AI.js       # AI ศัตรู
+│   │   │   └── Resources.js# ระบบทรัพยากร
+│   │   ├── ui/
+│   │   │   ├── HUD.js      # Head-up display
+│   │   │   └── Minimap.js  # แผนที่ขนาดเล็ก
+│   │   └── data/
+│   │       ├── units.js    # ข้อมูลหน่วยรบ
+│   │       └── maps.js     # ข้อมูลแผนที่
+│   └── assets/
+│       ├── sprites/        # ภาพหน่วยรบ
+│       └── audio/          # เสียงประกอบ</pre>
+                        </div>
+                    </div>
+
+                    <!-- Proposed Changes -->
+                    <div class="info-box" style="border-left: 4px solid var(--blue-main);">
+                        <h4><i class="fas fa-file-code"></i> Proposed Changes</h4>
+                        <div style="display: grid; gap: 0.75rem;">
+                            <div class="card" style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span class="badge badge-active" style="font-size: 0.7rem;">NEW</span>
+                                    <strong>html5-game/index.html</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--gray-600);">
+                                    หน้าเกมหลักที่ประกอบด้วย Canvas, UI overlay, Loading screen</p>
+                            </div>
+                            <div class="card" style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span class="badge badge-active" style="font-size: 0.7rem;">NEW</span>
+                                    <strong>html5-game/css/game.css</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--gray-600);">สไตล์เกมที่มีธีม Thai
+                                    Military (Gold/Navy)</p>
+                            </div>
+                            <div class="card" style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span class="badge badge-active" style="font-size: 0.7rem;">NEW</span>
+                                    <strong>html5-game/js/*.js</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--gray-600);">JavaScript modules
+                                    สำหรับระบบเกมทั้งหมด</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Review Required -->
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%); border: 2px solid var(--orange-main);">
+                        <h4 style="color: var(--orange-main);"><i class="fas fa-exclamation-triangle"></i> User Review
+                            Required</h4>
+                        <p style="margin-bottom: 1rem;"><strong>กรุณายืนยันว่าต้องการสร้างเกม HTML5 แบบใด:</strong></p>
+                        <div style="display: grid; gap: 0.75rem;">
+                            <div class="card" style="padding: 1rem; border-left: 4px solid var(--blue-main);">
+                                <strong style="color: var(--blue-main);">เวอร์ชันเต็ม</strong>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--gray-600);">มีทุกแคมเปญ,
+                                    หน่วยรบครบ (ใช้เวลามาก)</p>
+                            </div>
+                            <div class="card"
+                                style="padding: 1rem; border-left: 4px solid var(--orange-main); background: rgba(249, 115, 22, 0.05);">
+                                <strong style="color: var(--orange-main);">⭐ เวอร์ชัน Demo (แนะนำ)</strong>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--gray-600);">1 แคมเปญ
+                                    "สงครามช้างเผือก", หน่วยพื้นฐาน</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray-600);">
+                            <i class="fas fa-info-circle"></i> เกมจะถูกสร้างในโฟลเดอร์ใหม่ <code>html5-game/</code>
+                            แยกจากไฟล์ Storybook เดิม
+                        </p>
+                    </div>
+
+                    <!-- Verification Plan -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-clipboard-check"></i> Verification Plan</h4>
+
+                        <h5 style="color: var(--blue-main); margin: 1rem 0 0.75rem;">
+                            <i class="fas fa-globe"></i> การทดสอบในเบราว์เซอร์
+                        </h5>
+                        <ol style="margin: 0 0 1rem; padding-left: 1.25rem; color: var(--gray-700);">
+                            <li>เปิดไฟล์ <code>html5-game/index.html</code> ใน browser</li>
+                            <li>ตรวจสอบว่า:
+                                <ul style="margin: 0.5rem 0; padding-left: 1rem;">
+                                    <li>Canvas แสดงแผนที่และหน่วยรบ</li>
+                                    <li>คลิกเลือกหน่วยได้</li>
+                                    <li>คลิกขวาสั่งเคลื่อนที่ได้</li>
+                                    <li>AI ศัตรูเคลื่อนที่และโจมตี</li>
+                                    <li>ทรัพยากรเพิ่มขึ้นเมื่อเวลาผ่านไป</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h5 style="color: var(--orange-main); margin: 1rem 0 0.75rem;">
+                            <i class="fas fa-user-check"></i> Manual Testing
+                        </h5>
+                        <p style="margin: 0; color: var(--gray-700);">ผู้ใช้ทดสอบเล่นเกมและให้ feedback</p>
+                    </div>
+
                     <!-- Progress Meeting Schedule -->
                     <div class="info-box">
                         <h4><i class="fas fa-calendar-check"></i> กำหนดการรายงานความคืบหน้า</h4>
