@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="แนวคิดที่ 1 - การวินิจฉัยความผิดปกติของลูกปืนจากสัญญาณสั่นสะเทือนด้วยภาพสเกโลแกรม CWT และโครงข่ายประสาทเทียมเชิงลึกแบบกะทัดรัดบน MATLAB">
+    <title>แนวคิดที่ 1 | TNIAC2026 | Kitti.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    <style>
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .concept-table th,
+        .concept-table td {
+            border: 1px solid var(--gray-300);
+            padding: 0.75rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .concept-table th {
+            background: var(--gray-100);
+            font-weight: 600;
+        }
+
+        .concept-table tr:nth-child(even) {
+            background: var(--gray-50);
+        }
+
+        .result-img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .objective-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .keyword-badge {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+            color: var(--gray-700);
+        }
+
+        .section-number {
+            color: var(--blue-main);
+            font-weight: 600;
+        }
+
+        .reference-list {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .reference-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .figure-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+        }
+
+        .scalogram-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .formula-box {
+            background: var(--gray-50);
+            border-left: 4px solid var(--blue-main);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            overflow-x: auto;
+        }
+
+        .formula-box .katex {
+            font-size: 1.1rem;
+        }
+
+        .formula-number {
+            float: right;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .formula-desc {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-calendar-star"></i> Kitti.com</a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าหลัก</a></li>
+                <li><a href="events.html">อีเว้นทั้งหมด</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="event-hero">
+        <div class="container">
+            <span class="badge badge-upcoming" style="background: rgba(255,255,255,0.2); color: white;">
+                <i class="fas fa-lightbulb"></i> แนวคิดที่ 1
+            </span>
+            <h1>Bearing Fault Diagnosis</h1>
+            <p style="font-size: 1.15rem; opacity: 0.95;">
+                การวินิจฉัยความผิดปกติของลูกปืนจากสัญญาณสั่นสะเทือนด้วยภาพสเกโลแกรม CWT
+                และโครงข่ายประสาทเทียมเชิงลึกแบบกะทัดรัดบน MATLAB</p>
+            <div class="event-meta">
+                <div class="event-meta-item"><i class="fas fa-wave-square"></i><span>CWT Scalogram</span></div>
+                <div class="event-meta-item"><i class="fas fa-brain"></i><span>Lightweight CNN</span></div>
+                <div class="event-meta-item"><i class="fas fa-code"></i><span>MATLAB</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="event-content">
+                <div class="event-main">
+                    <!-- Abstract Thai -->
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, var(--blue-main) 0%, var(--orange-main) 100%); color: white;">
+                        <h4 style="color: white;"><i class="fas fa-file-alt"></i> บทคัดย่อ</h4>
+                        <p style="line-height: 1.8;">
+                            งานวิจัยนี้นำเสนอวิธีการวินิจฉัยความผิดปกติของลูกปืนจากสัญญาณการสั่นสะเทือน
+                            โดยแปลงสัญญาณให้เป็นภาพแทนเชิงเวลา–ความถี่ด้วยการแปลงเวฟเลตแบบต่อเนื่อง (CWT)
+                            เพื่อสร้างภาพสเกโลแกรม
+                            และจำแนกชนิดความผิดปกติด้วยโครงข่ายประสาทเทียมเชิงลึกแบบกะทัดรัดบนโปรแกรม MATLAB
+                            กระบวนการวิจัยประกอบด้วยการแบ่งสัญญาณเป็นช่วงเวลา การทำให้ข้อมูลอยู่ในรูปมาตรฐาน
+                            การสร้างภาพสเกโลแกรม และการฝึกสอนแบบจำลอง โดยใช้ชุดข้อมูลจากมหาวิทยาลัยเคสเวสเทิร์น
+                            รัฐโอไฮโอ สหรัฐอเมริกา และกำหนดการจำแนกเป็น 4 กลุ่ม ได้แก่ สภาพปกติ
+                            ความเสียหายที่วงแหวนด้านใน ความเสียหายที่วงแหวนด้านนอก และความเสียหายที่เม็ดลูกปืน
+                            ทั้งนี้ได้เปรียบเทียบกับวิธีฐานที่ใช้ลักษณะเฉพาะเชิงสถิติร่วมกับเครื่องเวกเตอร์สนับสนุน
+                            (SVM) และป่าไม้สุ่ม (Random Forest) ผลการทดลองจะรายงานด้วยค่าความถูกต้อง ความเที่ยง
+                            ความครอบคลุม ค่าคะแนนเอฟวัน และเมทริกซ์ความสับสน จากการทดลองบน MATLAB เพียงอย่างเดียว
+                            เพื่อยืนยันความเหมาะสมต่อการประยุกต์ใช้ในการบำรุงรักษาเชิงพยากรณ์ในงานอุตสาหกรรม</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>คำสำคัญ:</strong>
+                            <span class="keyword-badge"
+                                style="background: rgba(255,255,255,0.2); color: white;">การวินิจฉัยความผิดปกติของลูกปืน</span>
+                            <span class="keyword-badge"
+                                style="background: rgba(255,255,255,0.2); color: white;">สัญญาณการสั่นสะเทือน</span>
+                            <span class="keyword-badge"
+                                style="background: rgba(255,255,255,0.2); color: white;">CWT</span>
+                            <span class="keyword-badge"
+                                style="background: rgba(255,255,255,0.2); color: white;">สเกโลแกรม</span>
+                            <span class="keyword-badge"
+                                style="background: rgba(255,255,255,0.2); color: white;">Lightweight CNN</span>
+                        </div>
+                    </div>
+
+                    <!-- Abstract English -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-globe"></i> ABSTRACT</h4>
+                        <p style="line-height: 1.8;">This paper presents a MATLAB-only bearing fault diagnosis approach
+                            from vibration signals. Each signal segment is transformed into a time-frequency
+                            representation using Continuous Wavelet Transform (CWT) to generate scalogram images, which
+                            are classified by a lightweight convolutional neural network (Lightweight CNN). Experiments
+                            use the CWRU dataset with four classes (normal, inner race fault, outer race fault, and ball
+                            fault) and compare against baselines based on handcrafted statistical features with SVM and
+                            Random Forest. Performance is reported using accuracy, precision, recall, F1-score, and
+                            confusion matrices, with all experiments conducted in MATLAB.</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>Keywords:</strong>
+                            <span class="keyword-badge">Bearing fault diagnosis</span>
+                            <span class="keyword-badge">Vibration signals</span>
+                            <span class="keyword-badge">CWT</span>
+                            <span class="keyword-badge">Scalogram</span>
+                            <span class="keyword-badge">Lightweight CNN</span>
+                        </div>
+                    </div>
+
+                    <!-- I. Introduction -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-book-open"></i> <span class="section-number">I.</span> บทนำ</h4>
+                        <p>ความผิดปกติของลูกปืนเป็นปัจจัยสำคัญประการหนึ่งที่ก่อให้เกิดการหยุดชะงักของเครื่องจักรกลหมุน
+                            ส่งผลให้กระบวนการผลิตสูญเสียประสิทธิภาพและเกิดความเสียหายทางเศรษฐกิจ
+                            การพัฒนาวิธีการวินิจฉัยความผิดปกติจากสัญญาณการสั่นสะเทือนจึงมีบทบาทสำคัญต่อการบำรุงรักษาเชิงพยากรณ์
+                            โดยงานวิจัยร่วมสมัยจำนวนมากรายงานว่าแนวทางการเรียนรู้เชิงลึกสามารถเพิ่มความแม่นยำในการจำแนกสภาวะของเครื่องจักรได้ดีกว่าวิธีการเรียนรู้ของเครื่องแบบดั้งเดิม
+                            [1]</p>
+                        <p style="margin-top: 1rem;">ชุดข้อมูลของมหาวิทยาลัยเคสเวสเทิร์น
+                            จัดเป็นชุดข้อมูลมาตรฐานที่ได้รับความนิยมอย่างแพร่หลายสำหรับการทดสอบและเปรียบเทียบวิธีการวินิจฉัยความผิดปกติของลูกปืน
+                            เนื่องจากจัดเตรียมสัญญาณการสั่นสะเทือนในรูปแบบไฟล์ MATLAB
+                            และครอบคลุมทั้งสภาวะปกติและความผิดปกติหลายตำแหน่ง [2] อย่างไรก็ดี งานวิจัยเชิงเปรียบเทียบ
+                            ชี้ให้เห็นว่าแนวทางการแบ่งชุดข้อมูลแบบสุ่มในระดับส่วนย่อยของสัญญาณ อาจก่อให้เกิด
+                            "ข้อมูลรั่ว" กล่าวคือ
+                            ข้อมูลบางส่วนที่มีลักษณะใกล้เคียงกันจากการทดลองเดียวกันอาจปรากฏทั้งในชุดฝึกสอนและชุดทดสอบ
+                            ส่งผลให้ค่าความแม่นยำที่รายงานสูงเกินความเป็นจริง
+                            ดังนั้นจึงควรกำหนดแผนการแบ่งข้อมูลอย่างระมัดระวัง
+                            โดยอิงเงื่อนไขการทดลองหรือรอบการทดสอบเพื่อสะท้อนความสามารถในการประยุกต์ใช้จริงของแบบจำลอง
+                            [3], [10]</p>
+                        <p style="margin-top: 1rem;">งานวิจัยนี้เสนอวิธีการจำแนกความผิดปกติของลูกปืนจำนวน <strong>4
+                                คลาส</strong> ได้แก่ สภาพปกติ ความเสียหายที่วงแหวนด้านใน ความเสียหายที่วงแหวนด้านนอก
+                            และความเสียหายที่เม็ดลูกปืน
+                            โดยแปลงสัญญาณการสั่นสะเทือนให้เป็นภาพแทนเชิงเวลา–ความถี่ด้วยการแปลงเวฟเลตแบบต่อเนื่อง (CWT)
+                            เพื่อสร้าง "ภาพสเกโลแกรม" ซึ่งคำนวณจากค่าสัมบูรณ์ของสัมประสิทธิ์ CWT
+                            และใช้แสดงการกระจายพลังงานของสัญญาณตามเวลาและความถี่ [4], [5]
+                            จากนั้นฝึกสอนแบบจำลองโครงข่ายประสาทเทียมเชิงลึกแบบกะทัดรัด (CNN)
+                            เพื่อเพิ่มประสิทธิภาพในการจำแนก
+                            โดยสอดคล้องกับแนวโน้มงานวิจัยร่วมสมัยที่ประยุกต์ใช้การแปลงเชิงเวลา–ความถี่ เช่น CWT
+                            หรือสเปกโตรแกรม ร่วมกับโครงข่ายคอนโวลูชันเพื่อยกระดับความแม่นยำในการวินิจฉัยความผิดปกติ
+                            [6]–[9]</p>
+                    </div>
+
+                    <!-- II. Objectives -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-bullseye"></i> <span class="section-number">II.</span>
+                            วัตถุประสงค์ของการวิจัย</h4>
+                        <ul class="objective-list">
+                            <li><strong>1)</strong> พัฒนา MATLAB-only pipeline
+                                สำหรับวินิจฉัยความผิดปกติของลูกปืนจากสัญญาณสั่นสะเทือน โดยใช้ภาพสเกโลแกรมจาก CWT และ
+                                Lightweight CNN</li>
+                            <li><strong>2)</strong> เปรียบเทียบประสิทธิภาพกับวิธีฐาน (handcrafted features + SVM และ
+                                RandomForest) ภายใต้การแบ่งชุดข้อมูลที่ลดความเสี่ยง data leakage</li>
+                            <li><strong>3)</strong> ประเมินผลด้วย Accuracy, Precision, Recall, F1-score, Confusion
+                                Matrix และเวลา inference ต่อหนึ่งเซกเมนต์บน CPU</li>
+                        </ul>
+                    </div>
+
+                    <!-- III. Methodology -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-cogs"></i> <span class="section-number">III.</span> วิธีดำเนินการวิจัย</h4>
+
+                        <!-- III.I Dataset -->
+                        <h5 style="color: var(--blue-main); margin-top: 1.5rem;"><i class="fas fa-database"></i> III.I
+                            ชุดข้อมูลและการเตรียมข้อมูล</h5>
+                        <p>ใช้ชุดข้อมูล CWRU โดยเลือกสัญญาณจากตำแหน่ง drive-end ที่ความถี่การสุ่มตัวอย่าง 12 kHz
+                            เพื่อความสม่ำเสมอของข้อมูล [2]. กำหนด 4 คลาส ได้แก่ <strong>Normal, Inner Race Fault (IR),
+                                Outer Race Fault (OR)</strong> และ <strong>Ball Fault (B)</strong>
+                            จากนั้นแบ่งสัญญาณเป็นเซกเมนต์ความยาว N ตัวอย่าง (เช่น N = 4096) ด้วยการซ้อนทับ (overlap) 50%
+                            และทำมาตรฐานข้อมูลแบบ z-score เพื่อลดอิทธิพลจากสเกลของแอมพลิจูด ก่อนแบ่งเป็นชุด
+                            train/validation/test โดยยึดการแบ่งตามเงื่อนไขการทดสอบ (เช่น load หรือ run)
+                            เพื่อหลีกเลี่ยงข้อมูลรั่วตามข้อเสนอแนะในงาน benchmark [3], [10]</p>
+
+                        <!-- III.II CWT Scalogram -->
+                        <h5 style="color: var(--blue-main); margin-top: 1.5rem;"><i class="fas fa-chart-area"></i>
+                            III.II การสร้างภาพสเกโลแกรมด้วย CWT</h5>
+                        <p>สำหรับแต่ละเซกเมนต์ คำนวณ CWT ด้วย Wavelet Toolbox
+                            และสร้างสเกโลแกรมจากค่าสัมบูรณ์ของค่าสัมประสิทธิ์ CWT [4], [5]. งานนี้ใช้เวฟเลตเชิงวิเคราะห์
+                            (เช่น Morse) และกำหนดจำนวน voices-per-octave เพื่อเพิ่มความละเอียดในย่านความถี่ จากนั้นทำการ
+                            normalize และปรับขนาดภาพเป็น <strong>224×224 พิกเซล (grayscale)</strong>
+                            เพื่อป้อนให้เครือข่าย CNN</p>
+
+                        <!-- III.III Models -->
+                        <h5 style="color: var(--blue-main); margin-top: 1.5rem;"><i class="fas fa-brain"></i> III.III
+                            แบบจำลองและการฝึกสอน</h5>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div class="card" style="padding: 1.5rem; border-left: 4px solid var(--gray-500);">
+                                <h6 style="color: var(--gray-600);"><i class="fas fa-layer-group"></i> III.III.I วิธีฐาน
+                                </h6>
+                                <p style="font-size: 0.9rem;">สกัดคุณลักษณะเชิงสถิติและสเปกตรัม เช่น RMS, Kurtosis,
+                                    Skewness, Crest factor, Spectral entropy และ Bandpower แล้วฝึกสอนตัวจำแนก SVM (RBF
+                                    kernel) และ RandomForest เพื่อเป็น baseline [1]</p>
+                            </div>
+                            <div class="card" style="padding: 1.5rem; border-left: 4px solid var(--blue-main);">
+                                <h6 style="color: var(--blue-main);"><i class="fas fa-network-wired"></i> III.III.II
+                                    วิธีเสนอ</h6>
+                                <p style="font-size: 0.9rem;">
+                                    ออกแบบโครงข่ายประสาทเทียมแบบคอนโวลูชันที่มีโครงสร้างกะทัดรัด (Lightweight CNN)
+                                    ประกอบด้วยบล็อกชั้น Convolution, Batch Normalization, ReLU และ Max Pooling
+                                    จำนวนหลายบล็อก พร้อม Dropout ก่อน Fully Connected สำหรับจำแนก 4 คลาส ฝึกสอนด้วย Adam
+                                    optimizer และ mini-batch training [11], [12]</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+                            <i class="fas fa-info-circle"></i> เพื่อให้สามารถทำซ้ำผลการทดลองได้อย่างตรวจสอบได้
+                            พารามิเตอร์ที่เกี่ยวข้องกับการฝึกสอนและโครงสร้างแบบจำลองทั้งหมดถูกบันทึกไว้ ได้แก่
+                            ค่าการสุ่มเริ่มต้น โครงสร้างเครือข่าย ค่าพารามิเตอร์การฝึกสอน
+                            และแฟ้มแบบจำลองที่ผ่านการฝึกสอนแล้ว
+                        </p>
+                    </div>
+
+                    <!-- IV. Results -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-chart-bar"></i> <span class="section-number">IV.</span> ผลการวิจัย</h4>
+                        <p>การประเมินผลการจำแนกความผิดปกติของลูกปืนดำเนินการบนชุดข้อมูล CWRU โดยกำหนดการจำแนกเป็น 4 คลาส
+                            ได้แก่ ความเสียหายเม็ดลูกปืน (Ball) ความเสียหายวงแหวนด้านใน (InnerRace) สภาพปกติ (Normal)
+                            และความเสียหายวงแหวนด้านนอก (OuterRace) ทั้งนี้ได้เปรียบเทียบ 3 วิธี:</p>
+                        <ul style="margin: 1rem 0;">
+                            <li><strong>(1) วิธีที่นำเสนอ:</strong> ภาพสเกโลแกรมจาก CWT ร่วมกับ Lightweight CNN</li>
+                            <li><strong>(2) วิธีฐาน SVM:</strong> คุณลักษณะเชิงสถิติร่วมกับ Support Vector Machine</li>
+                            <li><strong>(3) วิธีฐาน Random Forest:</strong> คุณลักษณะเชิงสถิติร่วมกับ Random Forest</li>
+                        </ul>
+
+                        <!-- IV.I Overall Results -->
+                        <h5 style="color: var(--orange-main); margin-top: 1.5rem;"><i class="fas fa-table"></i> IV.I
+                            ผลการจำแนกภาพรวม</h5>
+                        <p>ตารางที่ I แสดงผลสรุปตัวชี้วัดของทั้งสามวิธี พบว่าแบบจำลองทั้งสามให้ผลการจำแนกถูกต้องทั้งหมด
+                            โดยมีค่า Accuracy และค่า Macro-F1 เท่ากับ 1.000 ทุกวิธี</p>
+
+                        <table class="concept-table" style="margin-top: 1rem;">
+                            <caption style="text-align: left; font-weight: 600; margin-bottom: 0.5rem;">ตารางที่ I. สรุป
+                                Accuracy, Macro-F1 และเวลาเฉลี่ยต่อหนึ่งตัวอย่าง</caption>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Accuracy</th>
+                                    <th>Macro-F1</th>
+                                    <th>Infer Time (ms/sample)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    style="background: linear-gradient(90deg, rgba(52, 152, 219, 0.1) 0%, transparent 100%);">
+                                    <td><strong>CNN (CWT Scalogram)</strong></td>
+                                    <td><strong>1.000</strong></td>
+                                    <td><strong>1.000</strong></td>
+                                    <td>87.64 ms</td>
+                                </tr>
+                                <tr>
+                                    <td>SVM (Handcrafted)</td>
+                                    <td>1.000</td>
+                                    <td>1.000</td>
+                                    <td><strong>6.39 ms</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Random Forest (Handcrafted)</td>
+                                    <td>1.000</td>
+                                    <td>1.000</td>
+                                    <td>14.12 ms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+                            <i class="fas fa-clock"></i> เมื่อพิจารณาเวลาประมวลผล: SVM เร็วที่สุด (6.39 ms) รองลงมาคือ
+                            Random Forest (14.12 ms) และ CNN (87.64 ms) ทั้งนี้แม้ CNN จะใช้เวลามากกว่า
+                            แต่ยังอยู่ในช่วงที่เหมาะสมต่อการประยุกต์ใช้ในงานอุตสาหกรรม
+                        </p>
+
+                        <!-- IV.II Per-class Results -->
+                        <h5 style="color: var(--orange-main); margin-top: 1.5rem;"><i class="fas fa-list-check"></i>
+                            IV.II ผลการจำแนกเชิงรายคลาส</h5>
+                        <p>การวิเคราะห์ผลเชิงรายคลาสจาก CNN พบว่าทั้ง 4 คลาสให้ค่า Precision, Recall และ F1-score
+                            เท่ากับ 1.000 ทั้งหมด
+                            แสดงว่าแบบจำลองสามารถจำแนกได้ถูกต้องครบทุกคลาสโดยไม่เกิดความสับสนระหว่างคลาส</p>
+                        <p style="margin-top: 0.5rem;">การกระจายจำนวนตัวอย่างของชุดทดสอบ: Ball (8), InnerRace (8),
+                            Normal (17), OuterRace (8) รวม 41 ตัวอย่าง</p>
+
+                        <!-- IV.III Confusion Matrices -->
+                        <h5 style="color: var(--orange-main); margin-top: 1.5rem;"><i class="fas fa-th"></i> IV.III
+                            เมทริกซ์ความสับสนของแต่ละวิธี</h5>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <img src="images/tniac-concept1-cm-cnn.png" alt="Confusion Matrix: CNN (CWT Scalogram)"
+                                    class="result-img">
+                                <p class="figure-caption">รูปที่ I. เมทริกซ์ความสับสนของ CNN (CWT Scalogram)</p>
+                            </div>
+                            <div>
+                                <img src="images/tniac-concept1-cm-rf.png" alt="Confusion Matrix: Random Forest"
+                                    class="result-img">
+                                <p class="figure-caption">รูปที่ II. เมทริกซ์ความสับสนของ Random Forest</p>
+                            </div>
+                            <div>
+                                <img src="images/tniac-concept1-cm-svm.png" alt="Confusion Matrix: SVM"
+                                    class="result-img">
+                                <p class="figure-caption">รูปที่ III. เมทริกซ์ความสับสนของ SVM</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+                            <i class="fas fa-info-circle"></i>
+                            ทั้งสามวิธีแสดงค่าบนแนวทแยงมุมทั้งหมดและเปอร์เซ็นต์รายแถว/คอลัมน์เป็น 100% ครบทุกคลาส
+                            ไม่ปรากฏการทำนายผิดคลาสในชุดทดสอบ
+                        </p>
+
+                        <!-- IV.IV Scalogram Examples -->
+                        <h5 style="color: var(--orange-main); margin-top: 1.5rem;"><i class="fas fa-image"></i> IV.IV
+                            ผลลัพธ์เชิงคุณภาพของภาพสเกโลแกรม</h5>
+                        <p>รูปที่ IV แสดงตัวอย่างภาพสเกโลแกรมจาก CWT สำหรับทั้ง 4 คลาส
+                            ซึ่งสะท้อนรูปแบบการกระจายพลังงานของสัญญาณในโดเมนเวลา–ความถี่ที่แตกต่างกันตามชนิดความผิดปกติ
+                            และช่วยสนับสนุนว่าแนวทางการแปลงสัญญาณเป็นภาพสเกโลแกรมสามารถทำให้แบบจำลองเรียนรู้ลักษณะจำเพาะของแต่ละคลาสได้อย่างมีประสิทธิภาพ
+                        </p>
+
+                        <div class="scalogram-grid">
+                            <img src="images/tniac-concept1-scalogram.png" alt="CWT Scalogram Examples (4 Classes)"
+                                class="result-img">
+                            <p class="figure-caption">รูปที่ IV. ตัวอย่างภาพสเกโลแกรมของข้อมูล 4 คลาส (Ball, InnerRace,
+                                Normal, OuterRace)</p>
+                        </div>
+
+                        <!-- IV.V Formulas -->
+                        <h5 style="color: var(--orange-main); margin-top: 1.5rem;"><i
+                                class="fas fa-square-root-alt"></i> IV.V
+                            สมการและวิธีคำนวณตัวชี้วัดที่ใช้ในการประเมินผล</h5>
+                        <p>เพื่อให้การประเมินผลมีความชัดเจนและสามารถทำซ้ำได้ งานวิจัยนี้นิยามเมทริกซ์ความสับสน
+                            (Confusion Matrix) ของการจำแนกแบบหลายคลาส (จำนวนคลาส $K = 4$) ดังนี้ ให้ $\mathbf{M} \in
+                            \mathbb{N}^{K \times K}$ เป็นเมทริกซ์ความสับสนที่มีสมาชิก $M_{ij}$ แทน
+                            "จำนวนตัวอย่างที่มีคลาสจริงเป็น $i$ แต่ถูกทำนายเป็น $j$"</p>
+
+                        <p style="margin-top: 1rem;">เมื่อพิจารณาคลาสที่ $c$ (เช่น Ball, InnerRace, Normal, OuterRace)
+                            สามารถคำนวณค่าพื้นฐานสำหรับการวัดผลได้ดังนี้:</p>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(1)</span>
+                            $$TP_c = M_{cc}$$
+                            <p class="formula-desc">โดยที่ $TP_c$ คือจำนวนที่ทำนายถูกในคลาส $c$</p>
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(2)</span>
+                            $$FN_c = \sum_{j=1, j \neq c}^{K} M_{cj}$$
+                            <p class="formula-desc">โดยที่ $FN_c$ คือจำนวนของคลาสจริง $c$ ที่ทำนายผิดไปเป็นคลาสอื่น</p>
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(3)</span>
+                            $$FP_c = \sum_{i=1, i \neq c}^{K} M_{ic}$$
+                            <p class="formula-desc">โดยที่ $FP_c$ คือจำนวนที่ถูกทำนายเป็นคลาส $c$ แต่คลาสจริงไม่ใช่ $c$
+                            </p>
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(4)</span>
+                            $$TN_c = \sum_{i=1}^{K} \sum_{j=1}^{K} M_{ij} - TP_c - FP_c - FN_c$$
+                            <p class="formula-desc">โดยที่ $TN_c$ คือจำนวนที่เหลือทั้งหมด</p>
+                        </div>
+
+                        <p style="margin-top: 1.5rem;">จากค่าดังกล่าว นิยามตัวชี้วัดหลักที่ใช้รายงานผลในงานวิจัยนี้
+                            ได้แก่:</p>
+
+                        <h6 style="color: var(--blue-main); margin-top: 1rem;"><i class="fas fa-crosshairs"></i> IV.V.I
+                            ความเที่ยง (Precision)</h6>
+                        <div class="formula-box">
+                            <span class="formula-number">(5)</span>
+                            $$Precision_c = \frac{TP_c}{TP_c + FP_c}$$
+                        </div>
+
+                        <h6 style="color: var(--blue-main); margin-top: 1rem;"><i class="fas fa-bullseye"></i> IV.V.II
+                            ความครอบคลุม (Recall)</h6>
+                        <div class="formula-box">
+                            <span class="formula-number">(6)</span>
+                            $$Recall_c = \frac{TP_c}{TP_c + FN_c}$$
+                        </div>
+
+                        <h6 style="color: var(--blue-main); margin-top: 1rem;"><i class="fas fa-balance-scale"></i>
+                            IV.V.III ค่าคะแนนเอฟวัน (F1-score)</h6>
+                        <div class="formula-box">
+                            <span class="formula-number">(7)</span>
+                            $$F1_c = \frac{2 \cdot Precision_c \cdot Recall_c}{Precision_c + Recall_c}$$
+                        </div>
+
+                        <h6 style="color: var(--blue-main); margin-top: 1rem;"><i class="fas fa-check-double"></i>
+                            IV.V.IV ความถูกต้อง (Accuracy)</h6>
+                        <p>ให้ $N = \sum_{i=1}^{K} \sum_{j=1}^{K} M_{ij}$ เป็นจำนวนตัวอย่างทั้งหมด และ $\sum_{c=1}^{K}
+                            M_{cc}$ เป็นจำนวนตัวอย่างที่ทำนายถูกทั้งหมด จะได้</p>
+                        <div class="formula-box">
+                            <span class="formula-number">(8)</span>
+                            $$Accuracy = \frac{\sum_{c=1}^{K} M_{cc}}{N}$$
+                        </div>
+
+                        <p style="margin-top: 1.5rem;">เนื่องจากเป็นการจำแนกแบบหลายคลาส งานวิจัยนี้สรุปผลภาพรวมด้วยค่า
+                            Macro-average ซึ่งเป็นค่าเฉลี่ยของตัวชี้วัดในแต่ละคลาส โดยให้น้ำหนักเท่ากันทุกคลาส ดังนี้:
+                        </p>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(9)</span>
+                            $$Macro\text{-}Precision = \frac{1}{K} \sum_{c=1}^{K} Precision_c$$
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(10)</span>
+                            $$Macro\text{-}Recall = \frac{1}{K} \sum_{c=1}^{K} Recall_c$$
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(11)</span>
+                            $$Macro\text{-}F1 = \frac{1}{K} \sum_{c=1}^{K} F1_c$$
+                        </div>
+
+                        <p style="margin-top: 1.5rem;">สำหรับเมทริกซ์ความสับสนที่แสดงเป็น "ร้อยละ" ในรูปประกอบ
+                            สามารถคำนวณได้จากการทำให้เป็นสัดส่วนตามผลรวมรายแถวหรือรายคอลัมน์ ดังนี้:</p>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(12)</span>
+                            $$P_{ij}^{(row)} = \frac{M_{ij}}{\sum_{j=1}^{K} M_{ij}} \times 100$$
+                            <p class="formula-desc">ร้อยละแบบรายแถว (row-normalized)
+                                ซึ่งแสดงสัดส่วนการทำนายในแต่ละคลาสจริง</p>
+                        </div>
+
+                        <div class="formula-box">
+                            <span class="formula-number">(13)</span>
+                            $$P_{ij}^{(col)} = \frac{M_{ij}}{\sum_{i=1}^{K} M_{ij}} \times 100$$
+                            <p class="formula-desc">ร้อยละแบบรายคอลัมน์ (column-normalized)
+                                ซึ่งแสดงสัดส่วนความถูกต้องของการทำนายแต่ละคลาส</p>
+                        </div>
+
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+                            <i class="fas fa-info-circle"></i>
+                            สมการและตัวชี้วัดทั้งหมดข้างต้นสามารถนำไปคำนวณผลการทดลองของทั้งวิธีที่เสนอ (CNN
+                            จากภาพสเกโลแกรม CWT) และวิธีฐาน (SVM, Random Forest)
+                            เพื่อให้สามารถเปรียบเทียบผลได้อย่างเป็นธรรมและสอดคล้องกันในทุกโมเดล
+                        </p>
+                    </div>
+
+                    <!-- V. Conclusion -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-flag-checkered"></i> <span class="section-number">V.</span>
+                            สรุปและอภิปรายผล</h4>
+                        <p>งานวิจัยนี้นำเสนอแนวทาง <strong>MATLAB-only</strong>
+                            สำหรับวินิจฉัยความผิดปกติของลูกปืนจากสัญญาณสั่นสะเทือนด้วยการแปลง CWT เพื่อสร้างภาพสเกโลแกรม
+                            และจำแนกด้วย Lightweight CNN โดยออกแบบให้รองรับการจำแนก 4 คลาสบนชุดข้อมูล CWRU
+                            พร้อมเปรียบเทียบกับวิธีฐานที่ใช้คุณลักษณะเชิงสถิติร่วมกับ SVM และ RandomForest</p>
+                        <p style="margin-top: 1rem;">การประเมินผลจะรายงานด้วยตัวชี้วัดมาตรฐานและ Confusion Matrix
+                            ภายใต้การแบ่งข้อมูลที่ลดความเสี่ยง data leakage ตามงาน benchmark [3], [10]</p>
+                        <div
+                            style="background: linear-gradient(135deg, var(--blue-main) 0%, var(--orange-main) 100%); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; color: white;">
+                            <h5 style="color: white; margin-bottom: 1rem;"><i class="fas fa-rocket"></i> แนวทางในอนาคต
+                            </h5>
+                            <ul style="margin: 0;">
+                                <li>เพิ่มการทดสอบข้ามโหลด/ข้ามความเร็ว (Cross-load/Cross-speed Testing)</li>
+                                <li>ปรับให้โมเดลทนต่อสัญญาณรบกวน (Noise Robustness)</li>
+                                <li>รองรับสภาพการใช้งานจริงในโรงงาน (Real-world Industrial Deployment)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Acknowledgments -->
+                    <div class="info-box" style="background: var(--gray-50);">
+                        <h4><i class="fas fa-heart"></i> กิตติกรรมประกาศ</h4>
+                        <p>ผู้วิจัยขอขอบคุณอาจารย์ที่ปรึกษาและคณาจารย์ประจำสาขาวิชาวิศวกรรมคอมพิวเตอร์
+                            คณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสวนสุนันทา
+                            ที่ให้คำแนะนำทางวิชาการและข้อเสนอแนะอันเป็นประโยชน์ต่อการดำเนินงานวิจัยนี้</p>
+                        <p style="margin-top: 0.75rem;">นอกจากนี้ ผู้วิจัยขอขอบคุณแหล่งข้อมูลสาธารณะ <strong>CWRU
+                                Bearing Data Center</strong> และเครื่องมือของบริษัท <strong>MathWorks</strong>
+                            ที่เอื้อต่อการพัฒนากระบวนการทดลองและการวิเคราะห์ผลในงานวิจัยนี้ [2], [4], [5]</p>
+                    </div>
+
+                    <!-- References -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-book"></i> บรรณานุกรม</h4>
+                        <ol class="reference-list">
+                            <li><strong>[1]</strong> K. K. Raj, R. Sharma, A. A. Awasthi, and P. K. Singh, "Enhanced
+                                Fault Detection in Bearings Using Machine Learning and Deep Learning Approaches,"
+                                <em>Information</em>, vol. 15, no. 5, Art. no. 259, 2024. [Online]. Available: <a
+                                    href="https://www.mdpi.com/2078-2489/15/5/259"
+                                    target="_blank">https://www.mdpi.com/2078-2489/15/5/259</a></li>
+                            <li><strong>[2]</strong> Case Western Reserve University, "Download a Data File - Bearing
+                                Data Center," Case School of Engineering. [Online]. Available: <a
+                                    href="https://engineering.case.edu/bearingdatacenter/download-data-file"
+                                    target="_blank">https://engineering.case.edu/bearingdatacenter/download-data-file</a>
+                            </li>
+                            <li><strong>[3]</strong> J. Hendriks, P. Dumond, and D. A. Knox, "Towards better
+                                benchmarking using the CWRU bearing fault dataset," <em>Mechanical Systems and Signal
+                                    Processing</em>, 2022. [Online]. Available: <a
+                                    href="https://www.sciencedirect.com/science/article/abs/pii/S0888327021010499"
+                                    target="_blank">https://www.sciencedirect.com/science/article/abs/pii/S0888327021010499</a>
+                            </li>
+                            <li><strong>[4]</strong> MathWorks, "Time-Frequency Analysis and Continuous Wavelet
+                                Transform," Wavelet Toolbox Documentation. [Online]. Available: <a
+                                    href="https://www.mathworks.com/help/wavelet/ug/time-frequency-analysis-and-continuous-wavelet-transform.html"
+                                    target="_blank">https://www.mathworks.com/help/wavelet/ug/time-frequency-analysis-and-continuous-wavelet-transform.html</a>
+                            </li>
+                            <li><strong>[5]</strong> MathWorks, "cwt - Continuous 1-D wavelet transform," Wavelet
+                                Toolbox Documentation. [Online]. Available: <a
+                                    href="https://www.mathworks.com/help/wavelet/ref/cwt.html"
+                                    target="_blank">https://www.mathworks.com/help/wavelet/ref/cwt.html</a></li>
+                            <li><strong>[6]</strong> Y. Yoo, H. Jo, and S.-W. Ban, "Lite and Efficient Deep Learning
+                                Model for Bearing Fault Diagnosis Using the CWRU Dataset," <em>Sensors</em>, vol. 23,
+                                no. 6, Art. no. 3157, 2023. [Online]. Available: <a
+                                    href="https://www.mdpi.com/1424-8220/23/6/3157"
+                                    target="_blank">https://www.mdpi.com/1424-8220/23/6/3157</a></li>
+                            <li><strong>[7]</strong> G. Fu, Q. Wei, and Y. Yang, "Bearing fault diagnosis with parallel
+                                CNN and LSTM," <em>Mathematical Biosciences and Engineering</em>, vol. 21, no. 2, pp.
+                                2385–2406, 2024, doi: 10.3934/mbe.2024105. [Online]. Available: <a
+                                    href="https://www.aimspress.com/article/doi/10.3934/mbe.2024105"
+                                    target="_blank">https://www.aimspress.com/article/doi/10.3934/mbe.2024105</a></li>
+                            <li><strong>[8]</strong> K. Han et al., "Research on a Bearing Fault Diagnosis Method Based
+                                on CNN-LSTM-GRU," <em>Machines</em>, vol. 12, no. 12, Art. no. 927, 2024. [Online].
+                                Available: <a href="https://www.mdpi.com/2075-1702/12/12/927"
+                                    target="_blank">https://www.mdpi.com/2075-1702/12/12/927</a></li>
+                            <li><strong>[9]</strong> I. Lupea, "Continuous Wavelet Transform and CNN for Fault
+                                Detection," <em>Applied Sciences</em>, vol. 15, no. 2, Art. no. 950, 2025. [Online].
+                                Available: <a href="https://www.mdpi.com/2076-3417/15/2/950"
+                                    target="_blank">https://www.mdpi.com/2076-3417/15/2/950</a></li>
+                            <li><strong>[10]</strong> R. K. Rosa et al., "Benchmarking deep learning models for bearing
+                                fault diagnosis using the CWRU dataset," arXiv:2407.14625, 2024. [Online]. Available: <a
+                                    href="https://arxiv.org/abs/2407.14625"
+                                    target="_blank">https://arxiv.org/abs/2407.14625</a></li>
+                            <li><strong>[11]</strong> MathWorks, "trainNetwork - Train neural network (Not
+                                recommended)," Deep Learning Toolbox Documentation. [Online]. Available: <a
+                                    href="https://www.mathworks.com/help/deeplearning/ref/trainnetwork.html"
+                                    target="_blank">https://www.mathworks.com/help/deeplearning/ref/trainnetwork.html</a>
+                            </li>
+                            <li><strong>[12]</strong> MathWorks, "trainingOptions - Options for training deep learning
+                                neural network," Deep Learning Toolbox Documentation. [Online]. Available: <a
+                                    href="https://www.mathworks.com/help/deeplearning/ref/trainingoptions.html"
+                                    target="_blank">https://www.mathworks.com/help/deeplearning/ref/trainingoptions.html</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="event-sidebar">
+                    <div class="info-box" style="position: sticky; top: 1rem;">
+                        <h4><i class="fas fa-arrow-left"></i> นำทาง</h4>
+                        <ul class="info-list">
+                            <li><a href="event-tniac.html"><i class="fas fa-home"></i> กลับหน้า TNIAC หลัก</a></li>
+                            <li><a href="event-tniac-experiment.html"><i class="fas fa-flask"></i> แผนการทดลองรายวัน</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> ข้อมูลงานวิจัย</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-database"></i> Dataset: CWRU</li>
+                            <li><i class="fas fa-layer-group"></i> Classes: 4</li>
+                            <li><i class="fas fa-code"></i> Platform: MATLAB</li>
+                            <li><i class="fas fa-microchip"></i> Sampling: 12 kHz</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4><i class="fas fa-tags"></i> 4 Classes</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="keyword-badge"
+                                style="background: var(--blue-main); color: white;">Normal</span>
+                            <span class="keyword-badge" style="background: var(--orange-main); color: white;">Ball
+                                Fault</span>
+                            <span class="keyword-badge" style="background: #9b59b6; color: white;">Inner Race</span>
+                            <span class="keyword-badge" style="background: #27ae60; color: white;">Outer Race</span>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h4><i class="fas fa-check-circle"></i> ผลลัพธ์หลัก</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-bullseye"></i> Accuracy: <strong
+                                    style="color: var(--blue-main);">100%</strong></li>
+                            <li><i class="fas fa-star"></i> F1-Score: <strong
+                                    style="color: var(--orange-main);">1.000</strong></li>
+                            <li><i class="fas fa-clock"></i> CNN Infer: 87.64 ms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <a href="event-tniac.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> กลับไปหน้า TNIAC
+                หลัก</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><i class="fas fa-calendar-star"></i> Kitti.com</div>
+                <div class="footer-text">© 2568 Kitti's Personal Event Tracker | สร้างด้วย ❤️</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kitti.com - เว็บส่วนตัวบันทึกงานอีเว้นต่างๆ ปฏิทินกิจกรรม และรายละเอียดการเตรียมตัว">
+    <title>Kitti.com | Personal Event Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-star"></i> Kitti.com
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">หน้าหลัก</a></li>
+                <li><a href="events.html">อีเว้นทั้งหมด</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-fadeInUp">
+                <h1>🎯 Kitti's Event Tracker</h1>
+                <p>บันทึกและติดตามงานอีเว้นต่างๆ ที่ได้เข้าร่วม ทั้งอดีตและปัจจุบัน พร้อมรายละเอียดการเตรียมตัว</p>
+                <a href="events.html" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> ดูอีเว้นทั้งหมด
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card animate-fadeInUp">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">อีเว้นที่กำลังดำเนินการ</div>
+                </div>
+                <div class="stat-card animate-fadeInUp">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">บทความที่ต้องส่ง</div>
+                </div>
+                <div class="stat-card animate-fadeInUp">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">การประกวด/แข่งขัน</div>
+                </div>
+                <div class="stat-card animate-fadeInUp">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">งานผู้ช่วยวิทยากร</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section">
+        <div class="container">
+            <div class="calendar-header">
+                <h2><i class="fas fa-calendar-alt"></i> ปฏิทินกิจกรรม</h2>
+                <p>ภาพรวมกำหนดการอีเว้นต่างๆ ประจำเดือน กุมภาพันธ์ - พฤษภาคม 2568/2569</p>
+            </div>
+
+            <div class="calendar">
+                <div class="calendar-nav">
+                    <button class="btn btn-sm" style="background: rgba(255,255,255,0.2); color: white;">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3>กุมภาพันธ์ 2568</h3>
+                    <button class="btn btn-sm" style="background: rgba(255,255,255,0.2); color: white;">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Weekdays -->
+                    <div class="calendar-weekday">อา</div>
+                    <div class="calendar-weekday">จ</div>
+                    <div class="calendar-weekday">อ</div>
+                    <div class="calendar-weekday">พ</div>
+                    <div class="calendar-weekday">พฤ</div>
+                    <div class="calendar-weekday">ศ</div>
+                    <div class="calendar-weekday">ส</div>
+
+                    <!-- Days - February 2568 starts on Saturday -->
+                    <!-- Week 1 -->
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"><span class="day-number">1</span></div>
+
+                    <!-- Week 2 -->
+                    <div class="calendar-day"><span class="day-number">2</span></div>
+                    <div class="calendar-day"><span class="day-number">3</span></div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">4</span>
+                        <a href="event-aucc.html" class="day-event blue">AUCC เริ่ม</a>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">5</span>
+                        <a href="event-aucc.html" class="day-event blue">AUCC</a>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">6</span>
+                        <a href="event-aucc.html" class="day-event blue">AUCC จบ</a>
+                    </div>
+                    <div class="calendar-day"><span class="day-number">7</span></div>
+                    <div class="calendar-day"><span class="day-number">8</span></div>
+
+                    <!-- Week 3 -->
+                    <div class="calendar-day"><span class="day-number">9</span></div>
+                    <div class="calendar-day"><span class="day-number">10</span></div>
+                    <div class="calendar-day"><span class="day-number">11</span></div>
+                    <div class="calendar-day"><span class="day-number">12</span></div>
+                    <div class="calendar-day"><span class="day-number">13</span></div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">14</span>
+                        <a href="event-youth-inno.html" class="day-event orange">Youth-Inno</a>
+                    </div>
+                    <div class="calendar-day"><span class="day-number">15</span></div>
+
+                    <!-- Week 4 -->
+                    <div class="calendar-day"><span class="day-number">16</span></div>
+                    <div class="calendar-day"><span class="day-number">17</span></div>
+                    <div class="calendar-day"><span class="day-number">18</span></div>
+                    <div class="calendar-day"><span class="day-number">19</span></div>
+                    <div class="calendar-day"><span class="day-number">20</span></div>
+                    <div class="calendar-day"><span class="day-number">21</span></div>
+                    <div class="calendar-day"><span class="day-number">22</span></div>
+
+                    <!-- Week 5 -->
+                    <div class="calendar-day"><span class="day-number">23</span></div>
+                    <div class="calendar-day"><span class="day-number">24</span></div>
+                    <div class="calendar-day"><span class="day-number">25</span></div>
+                    <div class="calendar-day"><span class="day-number">26</span></div>
+                    <div class="calendar-day"><span class="day-number">27</span></div>
+                    <div class="calendar-day"><span class="day-number">28</span></div>
+                    <div class="calendar-day"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Events Section -->
+    <section class="section"
+        style="background: linear-gradient(180deg, rgba(255,107,53,0.05) 0%, rgba(78,205,196,0.05) 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> อีเว้นที่กำลังดำเนินการ</h2>
+                <p>รายการอีเว้นที่ต้องเตรียมตัวและติดตาม</p>
+            </div>
+
+            <div class="events-grid">
+                <!-- Event 1: Youth Innovation -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">Youth Innovation Project #3</div>
+                            <div class="card-subtitle">ผู้ช่วยวิทยากร</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>งาน AIoT FOR FUTURE INNOVATION ภายใต้เวที The 11th International STEM Education Conference
+                            2026</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-upcoming">
+                                <i class="fas fa-clock"></i> 14 ก.พ. 2568
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-youth-inno.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 2: AUCC2026 -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">AUCC2026</div>
+                            <div class="card-subtitle">ส่งบทความวิชาการ</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>The 14th Asia Undergraduate Conference on Computing ที่ ม.ราชภัฏรำไพพรรณี จ.จันทบุรี</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-upcoming">
+                                <i class="fas fa-clock"></i> 4-6 ก.พ. 2568
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-aucc.html" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 3: TNIAC2026 -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">TNIAC2026</div>
+                            <div class="card-subtitle">ส่งบทความวิชาการ</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>The 12th TNI Academic Conference การประชุมสหวิทยาการ ที่สถาบันเทคโนโลยีไทย-ญี่ปุ่น</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active">
+                                <i class="fas fa-calendar"></i> 21-22 พ.ค. 2569
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-tniac.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 4: RTIPC -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">RTIPC Mahidol</div>
+                            <div class="card-subtitle">ประกวดนวัตกรรม</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Road Traffic Injury Pitching Challenge - นวัตกรรมแก้ปัญหาอุบัติเหตุทางถนน</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active">
+                                <i class="fas fa-flag"></i> เปิดรับสมัคร
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-rtipc.html" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 5: BRICC 9th -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">BRICC 9th</div>
+                            <div class="card-subtitle">ประกวดโครงงานวิจัย</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>ประกวดโครงงานวิจัย ป.ตรี ด้านวิทย์-เทคโนโลยี ที่ ม.ราชภัฏบุรีรัมย์</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-upcoming">
+                                <i class="fas fa-clock"></i> ปิดรับ 6 ก.พ. 2569
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-bricc.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-calendar-star"></i> Kitti.com
+                </div>
+                <div class="footer-text">
+                    © 2568 Kitti's Personal Event Tracker | สร้างด้วย ❤️
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
