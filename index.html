@@ -46,7 +46,7 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card animate-fadeInUp">
-                    <div class="stat-number">5</div>
+                    <div class="stat-number">6</div>
                     <div class="stat-label">อีเว้นที่กำลังดำเนินการ</div>
                 </div>
                 <div class="stat-card animate-fadeInUp">
@@ -232,6 +232,32 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Event 6: CPE5010 RTS Game -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">🎮 ยุทธการไทย RTS</div>
+                            <div class="card-subtitle">CPE5010 พัฒนาเกม</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>โปรเจคเกม RTS บนพื้นฐานประวัติศาสตร์ไทย - เปลี่ยนมาใช้ HTML5</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active">
+                                <i class="fas fa-code"></i> กำลังพัฒนา
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-cpe5010-rts.html" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -253,16 +279,30 @@
     <script>
         // ข้อมูลกิจกรรมตามเดือน (format: year-month เป็น Buddhist Era)
         const eventsData = {
+            '2568-12': [ // ธันวาคม 2568
+                { day: 8, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 15, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 22, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 29, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' }
+            ],
             '2569-01': [ // มกราคม 2569
-                { day: 17, title: 'RTIPC เปิดรับ', link: 'event-rtipc.html', color: 'blue' }
+                { day: 5, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 12, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 17, title: 'RTIPC เปิดรับ', link: 'event-rtipc.html', color: 'orange' },
+                { day: 19, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 26, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' }
             ],
             '2569-02': [ // กุมภาพันธ์ 2569
-                { day: 4, title: 'AUCC เริ่ม', link: 'event-aucc.html', color: 'blue' },
-                { day: 5, title: 'AUCC', link: 'event-aucc.html', color: 'blue' },
-                { day: 6, title: 'AUCC จบ', link: 'event-aucc.html', color: 'blue' },
+                { day: 2, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 4, title: 'AUCC เริ่ม', link: 'event-aucc.html', color: 'orange' },
+                { day: 5, title: 'AUCC', link: 'event-aucc.html', color: 'orange' },
+                { day: 6, title: 'AUCC จบ', link: 'event-aucc.html', color: 'orange' },
                 { day: 6, title: 'BRICC ปิดรับ', link: 'event-bricc.html', color: 'orange' },
                 { day: 7, title: 'RTIPC Webinar', link: 'event-rtipc.html', color: 'blue' },
+                { day: 9, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
                 { day: 14, title: 'Youth-Inno', link: 'event-youth-inno.html', color: 'orange' },
+                { day: 16, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
+                { day: 23, title: 'RTS จบ 🏆', link: 'event-cpe5010-rts.html', color: 'orange' },
                 { day: 28, title: 'RTIPC ปิดรับ', link: 'event-rtipc.html', color: 'orange' }
             ],
             '2569-03': [ // มีนาคม 2569
