@@ -75,81 +75,18 @@
 
             <div class="calendar">
                 <div class="calendar-nav">
-                    <button class="btn btn-sm" style="background: rgba(255,255,255,0.2); color: white;">
+                    <button id="prev-month-btn" class="btn btn-sm"
+                        style="background: rgba(255,255,255,0.2); color: white;" onclick="prevMonth()">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <h3>กุมภาพันธ์ 2568</h3>
-                    <button class="btn btn-sm" style="background: rgba(255,255,255,0.2); color: white;">
+                    <h3 id="calendar-month-title">กุมภาพันธ์ 2568</h3>
+                    <button id="next-month-btn" class="btn btn-sm"
+                        style="background: rgba(255,255,255,0.2); color: white;" onclick="nextMonth()">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-                <div class="calendar-grid">
-                    <!-- Weekdays -->
-                    <div class="calendar-weekday">อา</div>
-                    <div class="calendar-weekday">จ</div>
-                    <div class="calendar-weekday">อ</div>
-                    <div class="calendar-weekday">พ</div>
-                    <div class="calendar-weekday">พฤ</div>
-                    <div class="calendar-weekday">ศ</div>
-                    <div class="calendar-weekday">ส</div>
-
-                    <!-- Days - February 2568 starts on Saturday -->
-                    <!-- Week 1 -->
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"><span class="day-number">1</span></div>
-
-                    <!-- Week 2 -->
-                    <div class="calendar-day"><span class="day-number">2</span></div>
-                    <div class="calendar-day"><span class="day-number">3</span></div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">4</span>
-                        <a href="event-aucc.html" class="day-event blue">AUCC เริ่ม</a>
-                    </div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">5</span>
-                        <a href="event-aucc.html" class="day-event blue">AUCC</a>
-                    </div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">6</span>
-                        <a href="event-aucc.html" class="day-event blue">AUCC จบ</a>
-                    </div>
-                    <div class="calendar-day"><span class="day-number">7</span></div>
-                    <div class="calendar-day"><span class="day-number">8</span></div>
-
-                    <!-- Week 3 -->
-                    <div class="calendar-day"><span class="day-number">9</span></div>
-                    <div class="calendar-day"><span class="day-number">10</span></div>
-                    <div class="calendar-day"><span class="day-number">11</span></div>
-                    <div class="calendar-day"><span class="day-number">12</span></div>
-                    <div class="calendar-day"><span class="day-number">13</span></div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">14</span>
-                        <a href="event-youth-inno.html" class="day-event orange">Youth-Inno</a>
-                    </div>
-                    <div class="calendar-day"><span class="day-number">15</span></div>
-
-                    <!-- Week 4 -->
-                    <div class="calendar-day"><span class="day-number">16</span></div>
-                    <div class="calendar-day"><span class="day-number">17</span></div>
-                    <div class="calendar-day"><span class="day-number">18</span></div>
-                    <div class="calendar-day"><span class="day-number">19</span></div>
-                    <div class="calendar-day"><span class="day-number">20</span></div>
-                    <div class="calendar-day"><span class="day-number">21</span></div>
-                    <div class="calendar-day"><span class="day-number">22</span></div>
-
-                    <!-- Week 5 -->
-                    <div class="calendar-day"><span class="day-number">23</span></div>
-                    <div class="calendar-day"><span class="day-number">24</span></div>
-                    <div class="calendar-day"><span class="day-number">25</span></div>
-                    <div class="calendar-day"><span class="day-number">26</span></div>
-                    <div class="calendar-day"><span class="day-number">27</span></div>
-                    <div class="calendar-day"><span class="day-number">28</span></div>
-                    <div class="calendar-day"></div>
+                <div id="calendar-grid" class="calendar-grid">
+                    <!-- Calendar will be generated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -312,6 +249,131 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // ข้อมูลกิจกรรมตามเดือน (format: year-month เป็น Buddhist Era)
+        const eventsData = {
+            '2569-01': [ // มกราคม 2569
+                { day: 17, title: 'RTIPC เปิดรับ', link: 'event-rtipc.html', color: 'blue' }
+            ],
+            '2569-02': [ // กุมภาพันธ์ 2569
+                { day: 4, title: 'AUCC เริ่ม', link: 'event-aucc.html', color: 'blue' },
+                { day: 5, title: 'AUCC', link: 'event-aucc.html', color: 'blue' },
+                { day: 6, title: 'AUCC จบ', link: 'event-aucc.html', color: 'blue' },
+                { day: 6, title: 'BRICC ปิดรับ', link: 'event-bricc.html', color: 'orange' },
+                { day: 7, title: 'RTIPC Webinar', link: 'event-rtipc.html', color: 'blue' },
+                { day: 14, title: 'Youth-Inno', link: 'event-youth-inno.html', color: 'orange' },
+                { day: 28, title: 'RTIPC ปิดรับ', link: 'event-rtipc.html', color: 'orange' }
+            ],
+            '2569-03': [ // มีนาคม 2569
+                { day: 15, title: 'RTIPC ประกาศผล', link: 'event-rtipc.html', color: 'blue' },
+                { day: 15, title: 'Road Safety Expo', link: 'event-rtipc.html', color: 'orange' },
+                { day: 31, title: 'Expo จบ', link: 'event-rtipc.html', color: 'orange' }
+            ],
+            '2569-05': [ // พฤษภาคม 2569
+                { day: 16, title: 'RTIPC Final', link: 'event-rtipc.html', color: 'orange' },
+                { day: 21, title: 'TNIAC', link: 'event-tniac.html', color: 'blue' },
+                { day: 22, title: 'TNIAC จบ', link: 'event-tniac.html', color: 'blue' },
+                { day: 31, title: 'RTIPC Final จบ', link: 'event-rtipc.html', color: 'orange' }
+            ]
+        };
+
+        // เดือนที่มีกิจกรรม (สำหรับเลื่อนดู)
+        const monthsWithEvents = Object.keys(eventsData).sort();
+        let currentMonthIndex = 0;
+
+        const thaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+            'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+        const thaiWeekdays = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+
+        // คำนวณจำนวนวันในเดือน (ใช้ปีคริสต์ศักราช)
+        function getDaysInMonth(year, month) {
+            return new Date(year, month, 0).getDate();
+        }
+
+        // คำนวณวันแรกของเดือนเป็นวันอะไร (0=อาทิตย์, 1=จันทร์, ...)
+        function getFirstDayOfMonth(year, month) {
+            return new Date(year, month - 1, 1).getDay();
+        }
+
+        // สร้างปฏิทิน
+        function renderCalendar(yearMonth) {
+            const [beYear, month] = yearMonth.split('-').map(Number);
+            const ceYear = beYear - 543; // แปลงเป็นปีคริสต์ศักราช
+            const daysInMonth = getDaysInMonth(ceYear, month);
+            const firstDay = getFirstDayOfMonth(ceYear, month);
+            const events = eventsData[yearMonth] || [];
+
+            // อัพเดทหัวปฏิทิน
+            document.getElementById('calendar-month-title').textContent = `${thaiMonths[month - 1]} ${beYear}`;
+
+            // สร้าง grid
+            let html = '';
+
+            // วันในสัปดาห์
+            thaiWeekdays.forEach(day => {
+                html += `<div class="calendar-weekday">${day}</div>`;
+            });
+
+            // ช่องว่างก่อนวันที่ 1
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="calendar-day"></div>';
+            }
+
+            // วันในเดือน
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEvents = events.filter(e => e.day === day);
+                const hasEvent = dayEvents.length > 0;
+
+                html += `<div class="calendar-day${hasEvent ? ' has-event' : ''}">`;
+                html += `<span class="day-number">${day}</span>`;
+
+                dayEvents.forEach(event => {
+                    html += `<a href="${event.link}" class="day-event ${event.color}">${event.title}</a>`;
+                });
+
+                html += '</div>';
+            }
+
+            document.getElementById('calendar-grid').innerHTML = html;
+
+            // อัพเดทสถานะปุ่ม
+            document.getElementById('prev-month-btn').disabled = currentMonthIndex === 0;
+            document.getElementById('next-month-btn').disabled = currentMonthIndex === monthsWithEvents.length - 1;
+
+            // เปลี่ยนสไตล์ปุ่มเมื่อ disabled
+            updateButtonStyles();
+        }
+
+        function updateButtonStyles() {
+            const prevBtn = document.getElementById('prev-month-btn');
+            const nextBtn = document.getElementById('next-month-btn');
+
+            prevBtn.style.opacity = prevBtn.disabled ? '0.3' : '1';
+            prevBtn.style.cursor = prevBtn.disabled ? 'not-allowed' : 'pointer';
+            nextBtn.style.opacity = nextBtn.disabled ? '0.3' : '1';
+            nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
+        }
+
+        function prevMonth() {
+            if (currentMonthIndex > 0) {
+                currentMonthIndex--;
+                renderCalendar(monthsWithEvents[currentMonthIndex]);
+            }
+        }
+
+        function nextMonth() {
+            if (currentMonthIndex < monthsWithEvents.length - 1) {
+                currentMonthIndex++;
+                renderCalendar(monthsWithEvents[currentMonthIndex]);
+            }
+        }
+
+        // เริ่มต้นแสดงปฏิทินเดือนแรกที่มีกิจกรรม
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCalendar(monthsWithEvents[currentMonthIndex]);
+        });
+    </script>
 </body>
 
 </html>
