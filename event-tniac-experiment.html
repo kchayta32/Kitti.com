@@ -621,6 +621,11 @@
                     <i class="fas fa-chart-bar"></i>
                     <span class="tab-date">ผลเทรนเสร็จ</span>
                 </a>
+                <a href="#log-25jan-2220" class="timeline-tab" onclick="scrollToLog(event, 'log-25jan-2220')">
+                    <i class="fas fa-code"></i>
+                    <span class="tab-date">25 ม.ค. 2569</span>
+                    <span class="tab-time">22:20</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -2398,6 +2403,253 @@ Transferred 606/708 items from pretrained weights</pre>
                             <p style="margin: 0;"><i class="fas fa-rocket"></i> <strong>ขั้นตอนถัดไป:</strong>
                                 นำ <code>best.pt</code> ไปทดสอบ inference บนวิดีโอจริง/webcam พร้อมวัด FPS และ Latency
                             </p>
+                        </div>
+                    </div>
+
+                    <!-- ======= NEW LOG: 25 ม.ค. 2569 22:20 น. - BEAM TILT UPDATE ======= -->
+                    <div id="log-25jan-2220" class="log-section"></div>
+
+                    <!-- Log Entry Divider -->
+                    <div style="text-align: center; margin: 3rem 0 2rem;">
+                        <span
+                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600;">
+                            <i class="fas fa-code"></i> บันทึก 25 ม.ค. 2569 เวลา 22:20 น.
+                        </span>
+                    </div>
+
+                    <!-- Beam Tilt Code Update Log -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-sync-alt"></i> อัปเดตโค้ด Beam Tilt Detection (v2)</h4>
+
+                        <!-- Summary Box -->
+                        <div class="highlight-box"
+                            style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%); border-left-color: #f5576c;">
+                            <p style="margin: 0;"><i class="fas fa-info-circle"></i> <strong>สรุป:</strong>
+                                อัปเดต <code>run_beam_tilt_demo.m</code> และ <code>estimate_tilt_hough.m</code>
+                                เพื่อปรับปรุงการตรวจจับมุมเอียงของคาน โดยใช้ original.csv และจำกัดคลาสให้เหมาะกับแนวคาน/แนวนอนมากขึ้น</p>
+                        </div>
+
+                        <!-- Key Changes -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-list-check"></i> การเปลี่ยนแปลงหลัก
+                        </h5>
+                        <ul style="color: var(--gray-700); padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">ใช้ <code>original.csv</code> แทน CSV เดิม</li>
+                            <li style="margin-bottom: 0.5rem;">จำกัดคลาสให้เหมาะกับ "แนวคาน/แนวนอน" มากขึ้น: <code>Bearing</code>, <code>Cover Plate Termination</code></li>
+                            <li style="margin-bottom: 0.5rem;">ใน <code>estimate_tilt_hough</code>: <strong>คัดเฉพาะเส้นใกล้แนวนอน</strong> และถ้าไม่เจอเส้นแนวนอน → conf=0 และไม่ trigger</li>
+                            <li style="margin-bottom: 0.5rem;">ใน <code>run_beam_tilt_demo</code>: เพิ่มเงื่อนไข <code>confMin</code> กัน false alarm</li>
+                            <li>บันทึก overlay เฉพาะบางภาพ + log เป็น CSV</li>
+                        </ul>
+
+                        <!-- run_beam_tilt_demo.m -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-file-code"></i> 1) run_beam_tilt_demo.m (อัปเดต)
+                        </h5>
+                        <div class="code-block" style="font-size: 0.75rem; max-height: 500px; overflow-y: auto;">
+                            <span class="comment">%% run_beam_tilt_demo.m  (UPDATED)</span><br>
+                            clc; clear;<br><br>
+                            <span class="comment">% ====== PATHS (ของคุณ) ======</span><br>
+                            csvPath = <span class="string">"G:\ประกวด 2026\tniac2026\COCO-Bridge-2021-plus\original\Train\bbox\csv\original.csv"</span>;<br>
+                            imgRoot = <span class="string">"G:\ประกวด 2026\tniac2026\COCO-Bridge-2021-plus\original\Train\images"</span>;<br>
+                            outDir  = <span class="string">"G:\ประกวด 2026\tniac2026\PPE in MATLAB\tilt_output_v2"</span>;<br>
+                            if ~exist(outDir, <span class="string">"dir"</span>); mkdir(outDir); end<br><br>
+                            <span class="comment">% ====== PARAMETERS ======</span><br>
+                            <span class="comment">% เลือกคลาสที่มีแนวเส้นแนวนอนชัดกว่า (ลด 90°)</span><br>
+                            classFilter = [<span class="string">"Bearing"</span>, <span class="string">"Cover Plate Termination"</span>];<br><br>
+                            <span class="comment">% แจ้งเตือนตาม "มุมเบี่ยงจากแนวนอน" (deg)</span><br>
+                            TH_WATCH   = 5;<br>
+                            TH_WARNING = 10;<br>
+                            TH_CRIT    = 15;<br><br>
+                            <span class="comment">% ถ้า confidence ต่ำ ให้ถือว่า "ไม่พอหลักฐาน" → ไม่แจ้งเตือน</span><br>
+                            confMin = 0.15;<br><br>
+                            <span class="comment">% จำนวนรูปสุ่มทดสอบ (กันรันนาน)</span><br>
+                            maxFiles = 200;<br><br>
+                            <span class="comment">% ====== LOAD CSV ======</span><br>
+                            T = readtable(csvPath, <span class="string">"TextType"</span>, <span class="string">"string"</span>);<br><br>
+                            <span class="comment">% sanity: ตรวจคอลัมน์ (กรณีชื่อไม่ตรง)</span><br>
+                            needCols = [<span class="string">"filename"</span>,<span class="string">"class"</span>,<span class="string">"xmin"</span>,<span class="string">"ymin"</span>,<span class="string">"xmax"</span>,<span class="string">"ymax"</span>];<br>
+                            for c = needCols<br>
+                            &nbsp;&nbsp;if ~ismember(c, string(T.Properties.VariableNames))<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;error(<span class="string">"Missing column in CSV: %s"</span>, c);<br>
+                            &nbsp;&nbsp;end<br>
+                            end<br><br>
+                            <span class="comment">% filter class</span><br>
+                            T = T(ismember(T.class, classFilter), :);<br>
+                            if isempty(T)<br>
+                            &nbsp;&nbsp;error(<span class="string">"No rows after classFilter. Check class names in CSV."</span>);<br>
+                            end<br><br>
+                            <span class="comment">% list unique files</span><br>
+                            uniqueFiles = unique(T.filename);<br>
+                            rng(1);<br>
+                            N = min(maxFiles, numel(uniqueFiles));<br>
+                            pickFiles = uniqueFiles(randperm(numel(uniqueFiles), N));<br><br>
+                            <span class="comment">% ====== WARM-UP (ลด runtime แถวแรกช้า) ======</span><br>
+                            w = pickFiles(1);<br>
+                            Iw = imread(fullfile(imgRoot, w));<br>
+                            bbWarm = [50 50 200 200];<br>
+                            estimate_tilt_hough(Iw, bbWarm);<br><br>
+                            <span class="comment">% ====== RUN ======</span><br>
+                            logRows = [];<br>
+                            for i = 1:numel(pickFiles)<br>
+                            &nbsp;&nbsp;<span class="comment">% ... process each image and ROI ...</span><br>
+                            &nbsp;&nbsp;<span class="comment">% เช็ค confMin ก่อน trigger severity</span><br>
+                            &nbsp;&nbsp;<span class="comment">% save overlay เฉพาะเคสที่ conf ผ่าน และ severity ไม่ normal</span><br>
+                            end<br><br>
+                            <span class="comment">% ====== EXPORT LOG ======</span><br>
+                            Log = cell2table(logRows, <span class="string">"VariableNames"</span>, ...);<br>
+                            writetable(Log, fullfile(outDir, <span class="string">"tilt_log.csv"</span>));<br>
+                            disp(<span class="string">"Done. Output at: "</span> + outDir);
+                        </div>
+
+                        <!-- estimate_tilt_hough.m -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-vector-square"></i> 2) estimate_tilt_hough.m (อัปเดต "กัน 90°" + "คัดเส้นแนวนอน")
+                        </h5>
+                        <div class="code-block" style="font-size: 0.75rem; max-height: 450px; overflow-y: auto;">
+                            <span class="comment">function [angleDeg, conf, lineOut] = estimate_tilt_hough(I, bbox_xywh)</span><br>
+                            <span class="comment">% estimate_tilt_hough (UPDATED)</span><br>
+                            <span class="comment">% - เลือกเส้นใกล้แนวนอนเท่านั้น (กันหลงไปเส้นแนวดิ่งจนได้ 90°)</span><br>
+                            <span class="comment">% - ถ้าไม่เจอเส้นแนวนอน =&gt; conf = 0 และ angle=0 (ไม่ trigger)</span><br><br>
+                            &nbsp;&nbsp;<span class="comment">% --- crop ROI + padding ---</span><br>
+                            &nbsp;&nbsp;pad = 0.12;<br>
+                            &nbsp;&nbsp;x = bbox_xywh(1); y = bbox_xywh(2);<br>
+                            &nbsp;&nbsp;w = bbox_xywh(3); h = bbox_xywh(4);<br><br>
+                            &nbsp;&nbsp;<span class="comment">% ... crop and preprocess ...</span><br><br>
+                            &nbsp;&nbsp;<span class="comment">% --- Hough line detection ---</span><br>
+                            &nbsp;&nbsp;[Hh,Th,Rh] = hough(E);<br>
+                            &nbsp;&nbsp;P = houghpeaks(Hh, 12, <span class="string">"Threshold"</span>, ceil(0.35*max(Hh(:))));<br>
+                            &nbsp;&nbsp;L = houghlines(E, Th, Rh, P, <span class="string">"FillGap"</span>, 12, <span class="string">"MinLength"</span>, 50);<br><br>
+                            &nbsp;&nbsp;<span class="comment">% --- คัดเฉพาะเส้นใกล้แนวนอน (|angle| &lt;= 25 deg) ---</span><br>
+                            &nbsp;&nbsp;<span style="color: #ffd700;">maxAbsAngle = 25;</span>   <span class="comment">% ปรับได้ 20-35</span><br>
+                            &nbsp;&nbsp;keep = (abs(angles) &lt;= maxAbsAngle);<br><br>
+                            &nbsp;&nbsp;L2 = L(keep);<br>
+                            &nbsp;&nbsp;angles2 = angles(keep);<br>
+                            &nbsp;&nbsp;lens2 = lens(keep);<br><br>
+                            &nbsp;&nbsp;<span class="comment">% ถ้าไม่เจอเส้นแนวนอนเลย: ไม่มั่นใจ (ไม่ trigger)</span><br>
+                            &nbsp;&nbsp;if isempty(L2)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;angleDeg = 0; conf = 0;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;lineOut = struct(<span class="string">"point1"</span>,[NaN NaN],...);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return;<br>
+                            &nbsp;&nbsp;end<br><br>
+                            &nbsp;&nbsp;<span class="comment">% --- เลือกเส้นเด่น: ให้คะแนนจากความยาว + ใกล้ 0 deg ---</span><br>
+                            &nbsp;&nbsp;<span class="comment">% score = length * (1 - |angle|/maxAbsAngle)</span><br>
+                            &nbsp;&nbsp;score = lens2 .* (1 - min(abs(angles2), maxAbsAngle)/maxAbsAngle);<br>
+                            &nbsp;&nbsp;[bestScore, idx] = max(score);<br>
+                            &nbsp;&nbsp;best = L2(idx);<br><br>
+                            &nbsp;&nbsp;<span class="comment">% --- confidence (0..1) ---</span><br>
+                            &nbsp;&nbsp;diagLen = hypot(size(ROI,1), size(ROI,2));<br>
+                            &nbsp;&nbsp;conf = min(1, bestLen / diagLen);<br>
+                            end
+                        </div>
+
+                        <!-- save_overlay.m -->
+                        <h5 style="color: #8b5cf6; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-image"></i> 3) อัปเดต save_overlay.m ให้โชว์ conf ด้วย
+                        </h5>
+                        <div class="code-block" style="font-size: 0.75rem; max-height: 200px; overflow-y: auto;">
+                            <span class="comment">function save_overlay(I, bbox, lineOut, angleDeg, conf, severity, outPath)</span><br>
+                            &nbsp;&nbsp;fig = figure(<span class="string">"Visible"</span>,<span class="string">"off"</span>);<br>
+                            &nbsp;&nbsp;imshow(I); hold on;<br>
+                            &nbsp;&nbsp;rectangle(<span class="string">"Position"</span>, bbox, <span class="string">"EdgeColor"</span>,<span class="string">"y"</span>, <span class="string">"LineWidth"</span>, 2);<br>
+                            &nbsp;&nbsp;if all(~isnan(lineOut.point1)) && all(~isnan(lineOut.point2))<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;plot([lineOut.point1(1) lineOut.point2(1)], ...);<br>
+                            &nbsp;&nbsp;end<br>
+                            &nbsp;&nbsp;title(sprintf(<span class="string">"Tilt=%.2f deg | conf=%.2f | %s"</span>, angleDeg, conf, severity));<br>
+                            &nbsp;&nbsp;exportgraphics(gca, outPath);<br>
+                            &nbsp;&nbsp;close(fig);<br>
+                            end
+                        </div>
+
+                        <!-- Test Results -->
+                        <h5 style="color: #22c55e; margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-chart-pie"></i> 4) ผลลัพธ์หลังรัน (สรุป severity + สถิติ)
+                        </h5>
+                        <div class="code-block" style="font-size: 0.75rem; margin-bottom: 1rem;">
+                            logPath = <span class="string">"G:\ประกวด 2026\tniac2026\PPE in MATLAB\tilt_output_v2\tilt_log.csv"</span>;<br>
+                            T = readtable(logPath, <span class="string">"TextType"</span>, <span class="string">"string"</span>);<br>
+                            [counts, sev] = groupcounts(T.severity);<br>
+                            disp(table(sev, counts, <span class="string">'VariableNames'</span>, {<span class="string">'severity'</span>,<span class="string">'count'</span>}));
+                        </div>
+
+                        <!-- Results Table -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="card" style="padding: 1rem; text-align: center; background: linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(244, 67, 54, 0.2) 100%); border: 2px solid #f44336;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #f44336;">4</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">critical</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center; border: 2px solid #ff9800;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #ff9800;">16</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">warning</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center; border: 2px solid #ffc107;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #ffc107;">56</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">watch</div>
+                            </div>
+                            <div class="card" style="padding: 1rem; text-align: center; border: 2px solid #22c55e;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">280</div>
+                                <div style="font-size: 0.85rem; color: var(--gray-600);">normal</div>
+                            </div>
+                        </div>
+
+                        <!-- Statistics -->
+                        <div class="highlight-box" style="background: rgba(34, 197, 94, 0.1); border-left-color: #22c55e; margin-bottom: 1.5rem;">
+                            <p style="margin: 0;"><strong>Tilt deg (abs):</strong>
+                                mean=<strong>2.53°</strong> | median=<strong>0.87°</strong> | p90=<strong>7.91°</strong> | max=<strong>19.89°</strong></p>
+                        </div>
+
+                        <!-- Interpretation -->
+                        <h5 style="color: var(--blue-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-lightbulb"></i> การตีความผลลัพธ์
+                        </h5>
+                        <ul style="color: var(--gray-700); padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>critical = 4</strong>, warning = 16, watch = 56, normal = 280</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>median = 0.87°</strong> — ส่วนใหญ่ใกล้แนวนอน (ดี!)</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>p90 = 7.91°</strong> — 90% ของกรณีเอียงไม่เกิน ~8°</li>
+                            <li><strong>max = 19.89°</strong> — มีเคสเอียงสูงจริงบ้าง → เหมาะกับการทำ alert</li>
+                        </ul>
+
+                        <!-- Pipeline Ready -->
+                        <div class="highlight-box" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-left-color: #667eea; margin-bottom: 1.5rem;">
+                            <p style="margin: 0;"><i class="fas fa-check-circle"></i> <strong>สรุป:</strong>
+                                Pipeline ตอนนี้เริ่มสมเหตุสมผลแล้ว! โมเดลพร้อม "ยกระดับเป็นเดโม่ระบบเตือนภัย" โดยเชื่อม <strong>Beam tilt + PPE + Push event</strong> ได้เลย</p>
+                        </div>
+
+                        <!-- Next Steps -->
+                        <h5 style="color: var(--orange-main); margin: 1.5rem 0 0.75rem;">
+                            <i class="fas fa-forward"></i> ขั้นตอนถัดไป
+                        </h5>
+
+                        <!-- Step 1: Verify Top Events -->
+                        <div class="approach-card" style="margin-bottom: 1rem;">
+                            <h5><i class="fas fa-search"></i> 1) คัด Top Event แล้วเช็ค overlay ให้แน่ใจว่าไม่หลอก</h5>
+                            <p style="color: var(--gray-600); margin-bottom: 0.5rem;">คัด 10 แถวที่เอียงมากสุด (และ conf สูง) เพื่อดูว่า critical/warning มาจากอะไร:</p>
+                            <div class="code-block" style="font-size: 0.75rem;">
+                                T2 = sortrows(T, [<span class="string">"severity"</span>,<span class="string">"abs_tilt_deg"</span>,<span class="string">"confidence"</span>], [<span class="string">"descend"</span>,<span class="string">"descend"</span>,<span class="string">"descend"</span>]);<br>
+                                disp(T2(1:15, [<span class="string">"filename"</span>,<span class="string">"class"</span>,<span class="string">"abs_tilt_deg"</span>,<span class="string">"confidence"</span>,<span class="string">"severity"</span>,<span class="string">"runtime_ms"</span>]));
+                            </div>
+                            <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--gray-600);">
+                                <i class="fas fa-check"></i> ถ้า 4 critical เป็น "ของจริง" (เส้นคานเอียงจริง) = ผ่าน ✅<br>
+                                <i class="fas fa-wrench"></i> ถ้ายังเป็นเส้นหลอกบางรูป → ปรับเพิ่ม "center-line preference" อีกชั้นได้
+                            </p>
+                        </div>
+
+                        <!-- Step 2: Time Simulation -->
+                        <div class="approach-card">
+                            <h5><i class="fas fa-clock"></i> 2) ทำ "beam tilt" เป็น Early Warning แบบเวลา</h5>
+                            <p style="color: var(--gray-600); margin-bottom: 0.75rem;">จำลองการตรวจจับต่อเนื่องจากภาพนิ่ง:</p>
+                            <ul style="font-size: 0.9rem; padding-left: 1.25rem; margin: 0;">
+                                <li>เลือกภาพ 1 รูปที่คานชัด</li>
+                                <li>crop ROI จาก bbox</li>
+                                <li>หมุน ROI ทีละ 2°: 0, 2, 4, … 20</li>
+                                <li>รัน <code>estimate_tilt_hough</code> ทีละเฟรมแล้วทำกราฟมุม</li>
+                                <li>แจ้งเตือนเมื่อเข้า threshold ต่อเนื่อง N เฟรม</li>
+                            </ul>
+                        </div>
+
+                        <!-- Final Note -->
+                        <div class="highlight-box" style="margin-top: 1.5rem; margin-bottom: 0; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.2) 100%); border-left-color: #22c55e;">
+                            <p style="margin: 0;"><i class="fas fa-rocket"></i> <strong>Ready for Demo:</strong>
+                                ตอนนี้โมเดลพร้อม "ยกระดับเป็นเดโม่ระบบเตือนภัย" โดยเชื่อม Beam tilt + PPE + Push event ได้เลย!</p>
                         </div>
                     </div>
                 </div>
