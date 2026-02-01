@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Thailand Benchmark Programs 2026 - เฟ้นหาสุดยอดนักพัฒนาโมเดล AI ไทย">
+    <title>AI Thailand Benchmark 2026 | Kitti.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* AI Benchmark Theme - Purple/Blue Gradient */
+        .ai-benchmark-hero {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-benchmark-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120, 0, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .ai-benchmark-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(120, 0, 255, 0.3);
+        }
+
+        .challenge-card h5 {
+            color: #a78bfa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-card h4 {
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .challenge-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .challenge-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed, #3b82f6);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+
+        .prize-box {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .prize-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            font-weight: 600;
+            color: #7c3aed;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        #map {
+            height: 300px;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, #7c3aed, #3b82f6);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-star"></i> Kitti.com
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าหลัก</a></li>
+                <li><a href="events.html">อีเว้นทั้งหมด</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Event Hero -->
+    <section class="event-hero ai-benchmark-hero">
+        <div class="container">
+            <span class="badge badge-upcoming" style="background: rgba(255,255,255,0.2); color: white;">
+                <i class="fas fa-brain"></i> การแข่งขัน AI
+            </span>
+            <h1
+                style="background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🤖 AI Thailand Benchmark Programs 2026
+            </h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">กลับมาอีกครั้ง! เวทีแข่งขันแห่งปี เฟ้นหาสุดยอดนักพัฒนาโมเดล AI
+                ไทย</p>
+
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>8-28 มีนาคม 2569</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>รางวัลรวมกว่า 270,000 บาท</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>แข่งขันออนไลน์</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Content -->
+    <section class="section">
+        <div class="container">
+            <div class="event-content">
+                <!-- Main Content -->
+                <div class="event-main">
+                    <!-- About -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> เกี่ยวกับการแข่งขัน</h4>
+                        <p>โครงการ <strong>AI Thailand Benchmark Programs 2026</strong>
+                            เป็นการแข่งขันเพื่อ<strong>เฟ้นหาสุดยอดนักพัฒนาโมเดล AI ไทย</strong>
+                            โดยผู้ชนะจะได้ขึ้น <strong>No.1 Leaderboard ของ AI Thailand Benchmark</strong></p>
+                        <p><strong>จัดโดย:</strong> ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (NECTEC)
+                            สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.)</p>
+                        <p><strong>รูปแบบ:</strong> แข่งขันออนไลน์บน AI Thailand Benchmark Platform ตั้งแต่วันที่ 8-28
+                            มีนาคม 2569</p>
+                    </div>
+
+                    <!-- Prize -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-trophy"></i> เงินรางวัล</h4>
+                        <div class="prize-box">
+                            <p style="margin: 0; font-size: 1.1rem;">ชิงเงินรางวัลมูลค่ากว่า</p>
+                            <p class="prize-amount">270,000 บาท</p>
+                            <p style="margin: 0; font-size: 0.9rem;">รวมทั้ง 3 โจทย์การแข่งขัน</p>
+                        </div>
+                    </div>
+
+                    <!-- 3 Challenges -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-tasks"></i> 3 โจทย์การแข่งขัน</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+
+                            <!-- Challenge 1 -->
+                            <div class="challenge-card">
+                                <h5>โจทย์ที่ 1</h5>
+                                <h4><i class="fas fa-microphone-alt"></i> LOTUSDIS Distant Meeting Transcription
+                                    Challenge</h4>
+                                <p>การแข่งขันทดสอบศักยภาพ AI ในการถอดความเสียงการประชุมจริง
+                                    ที่เต็มไปด้วยเสียงรบกวนและการพูดทับซ้อน</p>
+                                <div style="margin-top: 1rem; font-size: 0.85rem; color: #94a3b8;">
+                                    <p><strong style="color: #a78bfa;">คุณสมบัติผู้สมัคร:</strong></p>
+                                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                        <li>นักเรียน นักศึกษา บุคคลทั่วไป ไม่จำกัดอายุ/ระดับการศึกษา</li>
+                                        <li>รวมทีม ไม่เกิน 3 คน</li>
+                                        <li>มีพื้นฐานการพัฒนาและ fine-tune โมเดล AI ด้าน Speech Recognition</li>
+                                        <li>สามารถใช้งานระบบปฏิบัติการ Linux</li>
+                                    </ul>
+                                </div>
+                                <span class="challenge-badge"><i class="fas fa-users"></i> รับเพียง 25 ทีม</span>
+                            </div>
+
+                            <!-- Challenge 2 -->
+                            <div class="challenge-card">
+                                <h5>โจทย์ที่ 2</h5>
+                                <h4><i class="fas fa-file-alt"></i> Meeting Minutes Summarization</h4>
+                                <p>การแข่งขันทดสอบศักยภาพ AI ในการสรุปความจากเอกสารบันทึกการประชุม</p>
+                                <div style="margin-top: 0.75rem; color: #94a3b8; font-size: 0.85rem;">
+                                    <span><i class="fas fa-calendar"></i> รับสมัคร: เม.ย. 69 | แข่งขัน: พ.ค. 69</span>
+                                </div>
+                                <span class="challenge-badge"><i class="fas fa-users"></i> รับสมัครผู้เข้าแข่งขัน 20
+                                    ทีม</span>
+                            </div>
+
+                            <!-- Challenge 3 -->
+                            <div class="challenge-card">
+                                <h5>โจทย์ที่ 3</h5>
+                                <h4><i class="fas fa-shield-alt"></i> LLM Trustworthiness Challenge</h4>
+                                <p>การแข่งขันประเมินและทดสอบความน่าเชื่อถือของ LLM (Large Language Model)</p>
+                                <div style="margin-top: 0.75rem; color: #94a3b8; font-size: 0.85rem;">
+                                    <span><i class="fas fa-calendar"></i> รับสมัคร: พ.ค. 69 | แข่งขัน: มิ.ย. 69</span>
+                                </div>
+                                <span class="challenge-badge"><i class="fas fa-users"></i> รับสมัครผู้เข้าแข่งขัน 20
+                                    ทีม</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-calendar-check"></i> กำหนดการ (โจทย์ที่ 1)</h4>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <i class="fas fa-door-open"></i> เปิดรับสมัคร
+                            </div>
+                            <div class="timeline-content">
+                                <strong>เปิดรับสมัครแล้ววันนี้</strong>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">ถึงวันที่ 27 กุมภาพันธ์
+                                    2569</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <i class="fas fa-clipboard-list"></i> ทำ Pre-test
+                            </div>
+                            <div class="timeline-content">
+                                <strong>ผู้สมัครต้องทำข้อสอบคัดเลือก</strong>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">
+                                    เพื่อรับสิทธิ์เข้าร่วมการแข่งขัน</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <i class="fas fa-bullhorn"></i> 2 มี.ค. 2569
+                            </div>
+                            <div class="timeline-content">
+                                <strong>ประกาศรายชื่อผู้ผ่านการคัดเลือก</strong>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">
+                                    ประกาศทีมที่ได้รับสิทธิ์เข้าร่วมการแข่งขัน</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <i class="fas fa-flag-checkered"></i> 8-28 มี.ค. 2569
+                            </div>
+                            <div class="timeline-content">
+                                <strong>ช่วงเวลาแข่งขัน</strong>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">แข่งขันออนไลน์บน AI
+                                    Thailand Benchmark Platform</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registration Steps -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-clipboard-check"></i> ขั้นตอนการสมัคร</h4>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <div class="checklist-checkbox"></div>
+                                <div class="checklist-text">
+                                    <h4>1. ลงทะเบียนผ่านระบบ</h4>
+                                    <p>สมัครที่ register.benchmark.ai.in.th และตรวจสอบอีเมลตอบกลับ
+                                        เพื่อรับรหัสผู้ลงทะเบียน 5 หลัก</p>
+                                </div>
+                            </li>
+                            <li class="checklist-item">
+                                <div class="checklist-checkbox"></div>
+                                <div class="checklist-text">
+                                    <h4>2. ยืนยันตัวตนทางอีเมล</h4>
+                                    <p>คลิกลิงก์ยืนยันตัวตนในอีเมลตอบกลับ</p>
+                                </div>
+                            </li>
+                            <li class="checklist-item">
+                                <div class="checklist-checkbox"></div>
+                                <div class="checklist-text">
+                                    <h4>3. ทำข้อสอบคัดเลือก (Pre-test)</h4>
+                                    <p>แต่ละทีมต้องทำข้อสอบเพื่อใช้ประกอบการพิจารณาการคัดเลือกทีมที่มีสิทธิ์เข้าร่วม</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(124, 58, 237, 0.1); border-radius: 8px; border-left: 4px solid #7c3aed;">
+                            <p style="margin: 0; font-size: 0.9rem;"><strong>หมายเหตุ:</strong></p>
+                            <ul style="margin: 0.5rem 0 0 1.5rem; font-size: 0.85rem; color: var(--gray-600);">
+                                <li>ทีมละ 1-3 คน</li>
+                                <li>สมาชิกไม่สามารถเปลี่ยนแปลง/สลับระหว่างทีมได้หลังลงทะเบียน</li>
+                                <li>หัวหน้าทีมเป็นผู้สร้างชื่อทีมในระบบ สมาชิกคนอื่นเลือกทีมที่มีอยู่</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Location Map -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-map-marked-alt"></i> สถานที่จัดงาน (NECTEC)</h4>
+                        <p><strong>ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (เนคเทค)</strong></p>
+                        <p>112 อุทยานวิทยาศาสตร์ประเทศไทย ถนนพหลโยธิน ตำบลคลองหนึ่ง อำเภอคลองหลวง จังหวัดปทุมธานี 12120
+                        </p>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;"><i class="fas fa-info-circle"></i>
+                            การแข่งขันจัดแบบออนไลน์ แต่พิธีมอบรางวัลและกิจกรรมอาจจัดที่ NECTEC</p>
+                        <div id="map"></div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="event-sidebar">
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color: #a78bfa;"><i class="fas fa-rocket"></i> สมัครเลย!</h4>
+                        <a href="https://register.benchmark.ai.in.th/" target="_blank" class="btn btn-primary"
+                            style="width: 100%; background: linear-gradient(135deg, #7c3aed, #3b82f6); border: none; margin-bottom: 1rem;">
+                            <i class="fas fa-external-link-alt"></i> ลงทะเบียนสมัคร
+                        </a>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                            <i class="fas fa-clock"></i> ปิดรับสมัครโจทย์ 1: <strong style="color: #f59e0b;">27 ก.พ.
+                                2569</strong>
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-link"></i> ลิงก์สำคัญ</h4>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://benchmark.ai.in.th/" target="_blank">AI Thailand Benchmark</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-plus"></i>
+                                <a href="https://register.benchmark.ai.in.th/" target="_blank">ระบบลงทะเบียน</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-users"></i>
+                                <a href="https://register.benchmark.ai.in.th/teams"
+                                    target="_blank">รายชื่อทีมผู้สมัคร</a>
+                            </li>
+                            <li>
+                                <i class="fab fa-facebook"></i>
+                                <a href="https://www.facebook.com/groups/aithailandcommunity" target="_blank">AI
+                                    Thailand Community</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-building"></i>
+                                <a href="https://www.nectec.or.th/" target="_blank">NECTEC</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-building"></i> จัดโดย</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-microchip"></i> NECTEC
+                                (ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ)</li>
+                            <li><i class="fas fa-flask"></i> สวทช. (สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-hashtag"></i> Hashtags</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="badge ai-badge">#AIThailandBenchmark</span>
+                            <span class="badge ai-badge">#NECTEC</span>
+                            <span class="badge ai-badge">#AI2026</span>
+                            <span class="badge ai-badge">#LOTUSDIS</span>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> ข้อมูลเพิ่มเติม</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-clock"></i> แข่งขัน: 8-28 มี.ค. 2569</li>
+                            <li><i class="fas fa-laptop"></i> รูปแบบ: ออนไลน์</li>
+                            <li><i class="fas fa-users"></i> โจทย์ 1: 25 ทีม</li>
+                            <li><i class="fas fa-users"></i> โจทย์ 2-3: 20 ทีม/โจทย์</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <a href="events.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> กลับไปหน้าอีเว้นทั้งหมด
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-calendar-star"></i> Kitti.com
+                </div>
+                <div class="footer-text">
+                    © 2568 Kitti's Personal Event Tracker | สร้างด้วย ❤️
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on NECTEC, Thailand Science Park
+        var map = L.map('map').setView([14.0789, 100.6025], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for NECTEC
+        var nectecMarker = L.marker([14.0789, 100.6025]).addTo(map)
+            .bindPopup('<strong>NECTEC</strong><br>ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ<br>อุทยานวิทยาศาสตร์ประเทศไทย<br>จ.ปทุมธานี')
+            .openPopup();
+    </script>
+</body>
+
+</html>

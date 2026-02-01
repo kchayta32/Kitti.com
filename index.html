@@ -46,7 +46,7 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card animate-fadeInUp">
-                    <div class="stat-number">6</div>
+                    <div class="stat-number">8</div>
                     <div class="stat-label">อีเว้นที่กำลังดำเนินการ</div>
                 </div>
                 <div class="stat-card animate-fadeInUp">
@@ -54,7 +54,7 @@
                     <div class="stat-label">บทความที่ต้องส่ง</div>
                 </div>
                 <div class="stat-card animate-fadeInUp">
-                    <div class="stat-number">2</div>
+                    <div class="stat-number">4</div>
                     <div class="stat-label">การประกวด/แข่งขัน</div>
                 </div>
                 <div class="stat-card animate-fadeInUp">
@@ -70,7 +70,7 @@
         <div class="container">
             <div class="calendar-header">
                 <h2><i class="fas fa-calendar-alt"></i> ปฏิทินกิจกรรม</h2>
-                <p>ภาพรวมกำหนดการอีเว้นต่างๆ ประจำเดือน กุมภาพันธ์ - พฤษภาคม 2568/2569</p>
+                <p>ภาพรวมกำหนดการอีเว้นต่างๆ ธันวาคม 2568 - มิถุนายน 2569</p>
             </div>
 
             <div class="calendar">
@@ -79,7 +79,12 @@
                         style="background: rgba(255,255,255,0.2); color: white;" onclick="prevMonth()">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <h3 id="calendar-month-title">กุมภาพันธ์ 2568</h3>
+                    <h3 id="calendar-month-title">กุมภาพันธ์ 2569</h3>
+                    <button id="today-btn" class="btn btn-sm"
+                        style="background: rgba(255,200,100,0.3); color: white; margin: 0 0.5rem;"
+                        onclick="goToToday()">
+                        <i class="fas fa-calendar-day"></i> วันนี้
+                    </button>
                     <button id="next-month-btn" class="btn btn-sm"
                         style="background: rgba(255,255,255,0.2); color: white;" onclick="nextMonth()">
                         <i class="fas fa-chevron-right"></i>
@@ -258,6 +263,59 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Event 7: School Satellite Competition -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">🚀 School Satellite 3</div>
+                            <div class="card-subtitle">GISTDA CubeSat 6U</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>โครงการดาวเทียม CubeSat - ทีม RECE Space Team ม.ราชภัฏสวนสุนันทา</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active">
+                                <i class="fas fa-rocket"></i> ปี 2568-2569
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-school-satellite.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 8: AI Thailand Benchmark -->
+                <div class="card animate-fadeInUp">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">🤖 AI Benchmark 2026</div>
+                            <div class="card-subtitle">แข่งขันพัฒนา AI</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>เฟ้นหาสุดยอดนักพัฒนาโมเดล AI ไทย - รางวัลรวม 270,000 บาท</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-upcoming">
+                                <i class="fas fa-calendar"></i> 8-28 มี.ค. 2569
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-ai-benchmark.html" class="btn btn-primary btn-sm"
+                            style="background: linear-gradient(135deg, #7c3aed, #3b82f6); border: none;">
+                            <i class="fas fa-arrow-right"></i> ดูรายละเอียด
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -303,17 +361,22 @@
                 { day: 9, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
                 { day: 14, title: 'Youth-Inno', link: 'event-youth-inno.html', color: 'orange' },
                 { day: 15, title: 'TNIAC รอบ2', link: 'event-tniac.html', color: 'blue' },
+                { day: 15, title: 'BRICC Final', link: 'event-bricc.html', color: 'orange' },
                 { day: 16, title: 'RTS รายงาน', link: 'event-cpe5010-rts.html', color: 'blue' },
                 { day: 16, title: 'TNIAC ผลรอบ1', link: 'event-tniac.html', color: 'blue' },
                 { day: 23, title: 'RTS จบ 🏆', link: 'event-cpe5010-rts.html', color: 'orange' },
+                { day: 27, title: 'AI Benchmark ปิดรับ', link: 'event-ai-benchmark.html', color: 'purple' },
                 { day: 28, title: 'RTIPC ปิดรับ', link: 'event-rtipc.html', color: 'orange' },
                 { day: 28, title: 'TNIAC ปกติ', link: 'event-tniac.html', color: 'orange' },
                 { day: 28, title: 'TNIAC รอบ1จบ', link: 'event-tniac.html', color: 'orange' }
             ],
             '2569-03': [ // มีนาคม 2569
+                { day: 2, title: 'AI Benchmark ประกาศ', link: 'event-ai-benchmark.html', color: 'purple' },
+                { day: 8, title: 'AI Benchmark เริ่ม', link: 'event-ai-benchmark.html', color: 'purple' },
                 { day: 15, title: 'RTIPC ประกาศผล', link: 'event-rtipc.html', color: 'blue' },
                 { day: 15, title: 'Road Safety Expo', link: 'event-rtipc.html', color: 'orange' },
                 { day: 16, title: 'TNIAC ผลรอบ2', link: 'event-tniac.html', color: 'blue' },
+                { day: 28, title: 'AI Benchmark จบ', link: 'event-ai-benchmark.html', color: 'purple' },
                 { day: 31, title: 'Expo จบ', link: 'event-rtipc.html', color: 'orange' },
                 { day: 31, title: 'TNIAC ผลปกติ', link: 'event-tniac.html', color: 'blue' },
                 { day: 31, title: 'TNIAC รอบ2จบ', link: 'event-tniac.html', color: 'orange' }
@@ -326,6 +389,9 @@
                 { day: 21, title: 'TNIAC', link: 'event-tniac.html', color: 'blue' },
                 { day: 22, title: 'TNIAC จบ', link: 'event-tniac.html', color: 'blue' },
                 { day: 31, title: 'RTIPC Final จบ', link: 'event-rtipc.html', color: 'orange' }
+            ],
+            '2569-06': [ // มิถุนายน 2569
+                // LLM Trustworthiness Challenge
             ]
         };
 
@@ -336,6 +402,32 @@
         const thaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
             'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
         const thaiWeekdays = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+
+        // หาวันนี้ในรูปแบบ Buddhist Era
+        function getTodayBE() {
+            const today = new Date();
+            const beYear = today.getFullYear() + 543;
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            return { yearMonth: `${beYear}-${month}`, day: today.getDate(), beYear, monthNum: today.getMonth() + 1 };
+        }
+
+        // หา index ของเดือนปัจจุบัน หรือเดือนที่ใกล้ที่สุด
+        function findCurrentMonthIndex() {
+            const today = getTodayBE();
+            const todayYearMonth = today.yearMonth;
+
+            // หาเดือนที่ตรงกับวันนี้
+            let idx = monthsWithEvents.indexOf(todayYearMonth);
+            if (idx !== -1) return idx;
+
+            // ถ้าไม่มี หาเดือนที่ใกล้ที่สุดในอนาคต
+            for (let i = 0; i < monthsWithEvents.length; i++) {
+                if (monthsWithEvents[i] > todayYearMonth) return i;
+            }
+
+            // ถ้าทุกเดือนผ่านไปแล้ว แสดงเดือนสุดท้าย
+            return monthsWithEvents.length - 1;
+        }
 
         // คำนวณจำนวนวันในเดือน (ใช้ปีคริสต์ศักราช)
         function getDaysInMonth(year, month) {
@@ -354,6 +446,8 @@
             const daysInMonth = getDaysInMonth(ceYear, month);
             const firstDay = getFirstDayOfMonth(ceYear, month);
             const events = eventsData[yearMonth] || [];
+            const today = getTodayBE();
+            const isCurrentMonth = yearMonth === today.yearMonth;
 
             // อัพเดทหัวปฏิทิน
             document.getElementById('calendar-month-title').textContent = `${thaiMonths[month - 1]} ${beYear}`;
@@ -375,9 +469,10 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayEvents = events.filter(e => e.day === day);
                 const hasEvent = dayEvents.length > 0;
+                const isToday = isCurrentMonth && day === today.day;
 
-                html += `<div class="calendar-day${hasEvent ? ' has-event' : ''}">`;
-                html += `<span class="day-number">${day}</span>`;
+                html += `<div class="calendar-day${hasEvent ? ' has-event' : ''}${isToday ? ' is-today' : ''}" ${isToday ? 'id="today-cell"' : ''}>`;
+                html += `<span class="day-number${isToday ? ' today-number' : ''}">${day}</span>`;
 
                 dayEvents.forEach(event => {
                     html += `<a href="${event.link}" class="day-event ${event.color}">${event.title}</a>`;
@@ -394,6 +489,35 @@
 
             // เปลี่ยนสไตล์ปุ่มเมื่อ disabled
             updateButtonStyles();
+
+            // เพิ่ม CSS สำหรับวันนี้
+            addTodayStyles();
+        }
+
+        function addTodayStyles() {
+            if (!document.getElementById('today-styles')) {
+                const style = document.createElement('style');
+                style.id = 'today-styles';
+                style.textContent = `
+                    .calendar-day.is-today {
+                        background: rgba(255, 200, 100, 0.2) !important;
+                        border: 2px solid #fbbf24 !important;
+                        border-radius: 8px;
+                    }
+                    .today-number {
+                        background: #fbbf24 !important;
+                        color: #1a1a2e !important;
+                        border-radius: 50%;
+                        padding: 2px 6px;
+                        font-weight: 700;
+                    }
+                    .day-event.purple {
+                        background: rgba(124, 58, 237, 0.2);
+                        color: #a78bfa;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
         }
 
         function updateButtonStyles() {
@@ -420,8 +544,24 @@
             }
         }
 
-        // เริ่มต้นแสดงปฏิทินเดือนแรกที่มีกิจกรรม
+        // ไปยังเดือนที่มีวันนี้
+        function goToToday() {
+            const todayIdx = findCurrentMonthIndex();
+            currentMonthIndex = todayIdx;
+            renderCalendar(monthsWithEvents[currentMonthIndex]);
+
+            // Scroll ไปที่วันนี้ (ถ้ามี)
+            setTimeout(() => {
+                const todayCell = document.getElementById('today-cell');
+                if (todayCell) {
+                    todayCell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // เริ่มต้นแสดงปฏิทินเดือนปัจจุบัน
         document.addEventListener('DOMContentLoaded', function () {
+            currentMonthIndex = findCurrentMonthIndex();
             renderCalendar(monthsWithEvents[currentMonthIndex]);
         });
     </script>
