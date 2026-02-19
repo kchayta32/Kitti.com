@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Engineering Skills & Hackathon for Employment 2026 - Microsoft x AIAT">
+    <title>AI Engineering Skills & Hackathon 2026 | Kitti.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* AI Skills Hackathon Theme - Microsoft Blue/Purple */
+        .ai-skills-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #0078d4 50%, #5c2d91 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-skills-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 120, 212, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(92, 45, 145, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 183, 195, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .ai-skills-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 120, 212, 0.3);
+        }
+
+        .phase-card h5 {
+            color: #00b7c3;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-card h4 {
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .phase-card p,
+        .phase-card li {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #0078d4, #5c2d91);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+
+        .cert-card {
+            background: rgba(0, 120, 212, 0.1);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .cert-card i {
+            font-size: 2rem;
+            color: #0078d4;
+        }
+
+        .cert-card p {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .ai-skills-badge {
+            background: linear-gradient(135deg, #0078d4, #5c2d91);
+            color: white;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            font-weight: 600;
+            color: #0078d4;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-star"></i> Kitti.com
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าหลัก</a></li>
+                <li><a href="events.html">อีเว้นทั้งหมด</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Event Hero -->
+    <section class="event-hero ai-skills-hero">
+        <div class="container">
+            <span class="badge badge-upcoming" style="background: rgba(255,255,255,0.2); color: white;">
+                <i class="fas fa-laptop-code"></i> AI Hackathon
+            </span>
+            <h1
+                style="background: linear-gradient(135deg, #00b7c3, #0078d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                💻 AI Engineering Skills & Hackathon for Employment 2026
+            </h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">ก้าวสู่สายอาชีพ AI Engineer - เรียนรู้ สอบ แข่งขัน
+                และเชื่อมต่อกับภาคอุตสาหกรรม</p>
+
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>ปี 2569</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-certificate"></i>
+                    <span>Microsoft Certifications</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>50 คนที่ได้รับคัดเลือก Bootcamp</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Content -->
+    <section class="section">
+        <div class="container">
+            <div class="event-content">
+                <!-- Main Content -->
+                <div class="event-main">
+                    <!-- About -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> เกี่ยวกับโครงการ</h4>
+                        <p><strong>Microsoft AI Engineering Skills and Hackathon for Employment 2026</strong>
+                            คือโครงการพัฒนาทักษะด้าน AI Engineering ครบวงจร ตั้งแต่การเรียนรู้พื้นฐาน จนถึงการแข่งขัน
+                            Hackathon และเชื่อมต่อกับภาคอุตสาหกรรม</p>
+                        <p><strong>สนับสนุนโดย:</strong> Microsoft</p>
+                        <p><strong>จัดโดย:</strong> สมาคมปัญญาประดิษฐ์ประเทศไทย (AIAT) เนื่องในโอกาสครบรอบ 10 ปี</p>
+                        <p><strong>เป้าหมาย:</strong> ผสมผสานการอบรมเชิงปฏิบัติด้าน Azure AI กับการแข่งขัน Hackathon
+                            พร้อมเชื่อมต่อโอกาสการจ้างงานโดยตรง</p>
+                    </div>
+
+                    <!-- 4 Phases -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-layer-group"></i> 4 ระยะของโครงการ</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+
+                            <!-- Phase 1 -->
+                            <div class="phase-card">
+                                <h5>ระยะที่ 1</h5>
+                                <h4><i class="fas fa-book-open"></i> Learn: เรียนรู้</h4>
+                                <p><strong style="color: #00b7c3;">กิจกรรม:</strong></p>
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Learning Path: Microsoft (Azure AI Fundamentals, GenAI Apps, AI Agents)</li>
+                                    <li>Digital Business & Design Thinking: AIAT Academy</li>
+                                </ul>
+                                <span class="phase-badge"><i class="fas fa-award"></i> Microsoft Learn Badges / Trophy +
+                                    AIAT Certificate</span>
+                            </div>
+
+                            <!-- Phase 2 -->
+                            <div class="phase-card">
+                                <h5>ระยะที่ 2</h5>
+                                <h4><i class="fas fa-certificate"></i> Certify & Qualify: รับรองและคัดเลือก</h4>
+                                <p><strong style="color: #00b7c3;">กิจกรรม:</strong></p>
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Mini Hackathon (Individual Qualifier — 24–36 ชม.)</li>
+                                    <li>AI-900 Sandbox & Assessment Practice</li>
+                                    <li>Presentation Clip (3 นาที)</li>
+                                </ul>
+                                <span class="phase-badge"><i class="fas fa-award"></i> AI-900 Certification +
+                                    Portfolio</span>
+                            </div>
+
+                            <!-- Phase 3 -->
+                            <div class="phase-card">
+                                <h5>ระยะที่ 3</h5>
+                                <h4><i class="fas fa-campground"></i> Bootcamp: บูทแคมป์ (50 คนที่ได้รับคัดเลือก)</h4>
+                                <p><strong style="color: #00b7c3;">กิจกรรม:</strong></p>
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Online Bootcamp (3 สัปดาห์)</li>
+                                    <li>Weekly Assignment</li>
+                                    <li>Exploring Industry Use-cases</li>
+                                    <li>AI-102 Certification Track & AI-200 Sandbox</li>
+                                </ul>
+                                <span class="phase-badge"><i class="fas fa-award"></i> Azure AI Engineer Associate +
+                                    AIAT Professional Certificate</span>
+                            </div>
+
+                            <!-- Phase 4 -->
+                            <div class="phase-card">
+                                <h5>ระยะที่ 4</h5>
+                                <h4><i class="fas fa-trophy"></i> Compete & Demo: แข่งขันและนำเสนอ</h4>
+                                <p><strong style="color: #00b7c3;">กิจกรรม:</strong></p>
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Final Hackathon</li>
+                                    <li>Demo & Pitching</li>
+                                    <li>Portfolio Presentation</li>
+                                </ul>
+                                <span class="phase-badge"><i class="fas fa-briefcase"></i> Matching กับภาคอุตสาหกรรม +
+                                    AIAT Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-medal"></i> Certifications & Badges ที่จะได้รับ</h4>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem;">
+                            <div class="cert-card">
+                                <i class="fab fa-microsoft"></i>
+                                <p><strong>Microsoft Learn Badges</strong></p>
+                            </div>
+                            <div class="cert-card">
+                                <i class="fas fa-file-certificate"></i>
+                                <p><strong>AIAT Certificate of Participants</strong></p>
+                            </div>
+                            <div class="cert-card">
+                                <i class="fas fa-brain"></i>
+                                <p><strong>AI-900 Certification</strong></p>
+                            </div>
+                            <div class="cert-card">
+                                <i class="fas fa-cogs"></i>
+                                <p><strong>Azure AI Engineer Associate</strong></p>
+                            </div>
+                            <div class="cert-card">
+                                <i class="fas fa-user-graduate"></i>
+                                <p><strong>AIAT Certificate of Associate AI Engineer</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Who can join -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-user-check"></i> ใครสมัครได้บ้าง?</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>นักศึกษา ที่ต้องการพัฒนาทักษะ AI</li>
+                            <li>คนทำงานที่ต้องการ upskill</li>
+                            <li>นักพัฒนาที่อยากก้าวเข้าสู่สาย AI Engineer</li>
+                        </ul>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(0, 120, 212, 0.1); border-radius: 8px; border-left: 4px solid #0078d4;">
+                            <p style="margin: 0; font-size: 0.9rem;"><strong>สิ่งที่จะได้รับ:</strong> ความรู้
+                                ประสบการณ์จริง Certification และโอกาสในการทำงาน</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="event-sidebar">
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, #0a1628, #1a2a4a); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color: #00b7c3;"><i class="fas fa-rocket"></i> สมัครเลย!</h4>
+                        <a href="https://microsoft-ai-skills.aiat.or.th/" target="_blank" class="btn btn-primary"
+                            style="width: 100%; background: linear-gradient(135deg, #0078d4, #5c2d91); border: none; margin-bottom: 1rem;">
+                            <i class="fas fa-external-link-alt"></i> สมัครเข้าร่วมโครงการ
+                        </a>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                            <i class="fas fa-info-circle"></i> กำหนดการอาจเปลี่ยนแปลงได้ตามความเหมาะสม
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-link"></i> ลิงก์สำคัญ</h4>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://microsoft-ai-skills.aiat.or.th/" target="_blank">เว็บไซต์โครงการ</a>
+                            </li>
+                            <li>
+                                <i class="fab fa-microsoft"></i>
+                                <a href="https://learn.microsoft.com/" target="_blank">Microsoft Learn</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-building"></i>
+                                <a href="https://aiat.or.th/" target="_blank">AIAT</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-building"></i> จัดโดย</h4>
+                        <ul class="info-list">
+                            <li><i class="fab fa-microsoft"></i> Microsoft (สนับสนุน)</li>
+                            <li><i class="fas fa-brain"></i> AIAT (สมาคมปัญญาประดิษฐ์ประเทศไทย)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-hashtag"></i> Hashtags</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="badge ai-skills-badge">#AIEngineering</span>
+                            <span class="badge ai-skills-badge">#MicrosoftAI</span>
+                            <span class="badge ai-skills-badge">#AIAT</span>
+                            <span class="badge ai-skills-badge">#AzureAI</span>
+                            <span class="badge ai-skills-badge">#Hackathon2026</span>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> ข้อมูลเพิ่มเติม</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-laptop"></i> รูปแบบ: ออนไลน์ + Onsite</li>
+                            <li><i class="fas fa-users"></i> Bootcamp: 50 คน</li>
+                            <li><i class="fas fa-certificate"></i> AI-900 + AI-102</li>
+                            <li><i class="fas fa-briefcase"></i> เชื่อมต่อโอกาสงาน</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <a href="events.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> กลับไปหน้าอีเว้นทั้งหมด
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-calendar-star"></i> Kitti.com
+                </div>
+                <div class="footer-text">
+                    © 2568 Kitti's Personal Event Tracker | สร้างด้วย ❤️
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

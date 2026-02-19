@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ฮักแม่ HACKATHON สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน - มหาวิทยาลัยมหาสารคาม">
+    <title>ฮักแม่ HACKATHON | Kitti.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ฮักแม่ Hackathon Theme - Green/Gold (MSU) */
+        .hug-mae-hero {
+            background: linear-gradient(135deg, #0d2818 0%, #1b5e20 50%, #2e7d32 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hug-mae-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(200, 164, 21, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(27, 94, 32, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 235, 59, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hug-mae-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .heritage-card {
+            background: linear-gradient(135deg, #0d2818 0%, #1a3a25 100%);
+            border: 1px solid rgba(200, 164, 21, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(200, 164, 21, 0.3);
+        }
+
+        .heritage-card h5 {
+            color: #c8a415;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .heritage-card h4 {
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .heritage-card p,
+        .heritage-card li {
+            color: #a5d6a7;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1b5e20, #c8a415);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+
+        .msu-badge {
+            background: linear-gradient(135deg, #1b5e20, #c8a415);
+            color: white;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            font-weight: 600;
+            color: #1b5e20;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-star"></i> Kitti.com
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าหลัก</a></li>
+                <li><a href="events.html">อีเว้นทั้งหมด</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Event Hero -->
+    <section class="event-hero hug-mae-hero">
+        <div class="container">
+            <span class="badge badge-upcoming" style="background: rgba(200, 164, 21, 0.3); color: #ffd54f;">
+                <i class="fas fa-leaf"></i> Hackathon
+            </span>
+            <h1
+                style="background: linear-gradient(135deg, #ffd54f, #c8a415); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🌾 ฮักแม่ HACKATHON
+            </h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน</p>
+
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <i class="fas fa-university"></i>
+                    <span>มหาวิทยาลัยมหาสารคาม</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>นิสิต นักศึกษาปริญญาตรี ทุกมหาวิทยาลัย</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>นวัตกรรมเพื่อพัฒนาชุมชน</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Content -->
+    <section class="section">
+        <div class="container">
+            <div class="event-content">
+                <!-- Main Content -->
+                <div class="event-main">
+                    <!-- About -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> เกี่ยวกับโครงการ</h4>
+                        <p><strong>ฮักแม่ Hackathon "สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน"</strong></p>
+                        <p>ขอเชิญชวนนิสิต นักศึกษาระดับปริญญาตรีจากทุกมหาวิทยาลัย
+                            ร่วมส่งแนวคิดนวัตกรรมเพื่อพัฒนาชุมชนไทย
+                            โดยน้อมนำพระราชดำริ สืบสานมรดกแม่แห่งแผ่นดิน</p>
+                        <p><strong>จัดโดย:</strong> มหาวิทยาลัยมหาสารคาม (MSU)</p>
+                        <p><strong>วัตถุประสงค์:</strong> สร้างแนวคิดนวัตกรรมที่เชื่อมโยงมรดกทางวัฒนธรรมกับเศรษฐกิจชุมชน
+                            เพื่อพัฒนาชุมชนไทยอย่างยั่งยืน</p>
+                    </div>
+
+                    <!-- Concept -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-leaf"></i> แนวคิดหลัก</h4>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+                            <div class="heritage-card">
+                                <h5>มรดกแม่แห่งแผ่นดิน</h5>
+                                <h4><i class="fas fa-crown"></i> สืบสาน</h4>
+                                <p>น้อมนำพระราชดำริเพื่อการอนุรักษ์และพัฒนามรดกทางวัฒนธรรมของแผ่นดินไทย</p>
+                            </div>
+                            <div class="heritage-card">
+                                <h5>เศรษฐกิจชุมชน</h5>
+                                <h4><i class="fas fa-store"></i> พัฒนา</h4>
+                                <p>สร้างนวัตกรรมที่ส่งเสริมเศรษฐกิจชุมชนให้เข้มแข็งและยั่งยืน</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Eligibility -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-user-check"></i> คุณสมบัติผู้สมัคร</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>นิสิต นักศึกษาระดับปริญญาตรี</li>
+                            <li>จากทุกมหาวิทยาลัยทั่วประเทศ</li>
+                            <li>มีความสนใจในการพัฒนานวัตกรรมเพื่อชุมชน</li>
+                        </ul>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(27, 94, 32, 0.1); border-radius: 8px; border-left: 4px solid #1b5e20;">
+                            <p style="margin: 0; font-size: 0.9rem;"><strong>รูปแบบ:</strong>
+                                ส่งแนวคิดนวัตกรรมเพื่อพัฒนาชุมชนไทย</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="event-sidebar">
+                    <div class="info-box"
+                        style="background: linear-gradient(135deg, #0d2818, #1a3a25); border: 1px solid rgba(200, 164, 21, 0.3);">
+                        <h4 style="color: #ffd54f;"><i class="fas fa-rocket"></i> สนใจเข้าร่วม!</h4>
+                        <a href="https://www.facebook.com/MahasarakhamUniversity.MSU/posts/937579195900982/"
+                            target="_blank" class="btn btn-primary"
+                            style="width: 100%; background: linear-gradient(135deg, #1b5e20, #c8a415); border: none; margin-bottom: 1rem;">
+                            <i class="fab fa-facebook"></i> ดูรายละเอียดบน Facebook
+                        </a>
+                        <p style="color: #a5d6a7; font-size: 0.85rem; margin: 0;">
+                            <i class="fas fa-flag"></i> เปิดรับสมัครแล้ว!
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-link"></i> ลิงก์สำคัญ</h4>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fab fa-facebook"></i>
+                                <a href="https://www.facebook.com/MahasarakhamUniversity.MSU/" target="_blank">Facebook
+                                    MSU</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://www.msu.ac.th/" target="_blank">เว็บไซต์ ม.มหาสารคาม</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-building"></i> จัดโดย</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-university"></i> มหาวิทยาลัยมหาสารคาม (MSU)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-hashtag"></i> Hashtags</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="badge msu-badge">#ฮักแม่Hackathon</span>
+                            <span class="badge msu-badge">#MSU</span>
+                            <span class="badge msu-badge">#มรดกแม่แห่งแผ่นดิน</span>
+                            <span class="badge msu-badge">#เศรษฐกิจชุมชน</span>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> ข้อมูลเพิ่มเติม</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-map-marker-alt"></i> จ.มหาสารคาม</li>
+                            <li><i class="fas fa-users"></i> ป.ตรี ทุกมหาวิทยาลัย</li>
+                            <li><i class="fas fa-lightbulb"></i> นวัตกรรมเพื่อชุมชน</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <a href="events.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> กลับไปหน้าอีเว้นทั้งหมด
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-calendar-star"></i> Kitti.com
+                </div>
+                <div class="footer-text">
+                    © 2568 Kitti's Personal Event Tracker | สร้างด้วย ❤️
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
