@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="ฮักแม่ HACKATHON สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน - มหาวิทยาลัยมหาสารคาม">
-    <title>ฮักแม่ HACKATHON | Kitti.com</title>
+        content="โครงการนวัตกรรมเยาวชนสานต่อมรดกแม่แห่งแผ่นดิน 2026 - Youth Hackathon Inspired by the Royal Initiatives of the Queen Mother">
+    <title>ฮักแม่ HACKATHON 2026 | Kitti.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
             z-index: 1;
         }
 
-        .heritage-card {
+        .theme-card {
             background: linear-gradient(135deg, #0d2818 0%, #1a3a25 100%);
             border: 1px solid rgba(200, 164, 21, 0.3);
             border-radius: 12px;
@@ -47,24 +47,25 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .heritage-card:hover {
+        .theme-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(200, 164, 21, 0.3);
         }
 
-        .heritage-card h5 {
+        .theme-card h5 {
             color: #c8a415;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .heritage-card h4 {
+        .theme-card h4 {
             color: white;
             margin-bottom: 0.75rem;
         }
 
-        .heritage-card p,
-        .heritage-card li {
+        .theme-card p {
             color: #a5d6a7;
             font-size: 0.9rem;
             margin: 0;
@@ -77,7 +78,6 @@
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            margin-top: 0.75rem;
         }
 
         .msu-badge {
@@ -85,25 +85,80 @@
             color: white;
         }
 
-        .timeline-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--gray-200);
+        .timeline-step {
+            position: relative;
+            padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+            border-left: 3px solid rgba(200, 164, 21, 0.3);
+            margin-left: 1rem;
         }
 
-        .timeline-item:last-child {
-            border-bottom: none;
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 1.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1b5e20, #c8a415);
+            border: 3px solid white;
         }
 
-        .timeline-date {
-            min-width: 120px;
+        .timeline-step.active {
+            border-left-color: #c8a415;
+        }
+
+        .timeline-step .step-date {
             font-weight: 600;
+            color: #1b5e20;
+            font-size: 0.9rem;
+        }
+
+        .timeline-step .step-title {
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+
+        .timeline-step .step-desc {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .criteria-item {
+            padding: 0.75rem 1rem;
+            background: rgba(27, 94, 32, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #1b5e20;
+            margin-bottom: 0.5rem;
+        }
+
+        .criteria-item strong {
             color: #1b5e20;
         }
 
-        .timeline-content {
-            flex: 1;
+        .prize-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #0d2818, #1a3a25);
+            border: 2px solid rgba(200, 164, 21, 0.5);
+            border-radius: 16px;
+            color: white;
+        }
+
+        .prize-box .prize-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd54f, #c8a415);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .prize-box .prize-bonus {
+            margin-top: 0.75rem;
+            font-size: 1rem;
+            color: #a5d6a7;
         }
     </style>
 </head>
@@ -132,20 +187,22 @@
                 style="background: linear-gradient(135deg, #ffd54f, #c8a415); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                 🌾 ฮักแม่ HACKATHON
             </h1>
-            <p style="font-size: 1.25rem; opacity: 0.95;">สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน</p>
+            <p style="font-size: 1.1rem; opacity: 0.95;">โครงการนวัตกรรมเยาวชนสานต่อมรดกแม่แห่งแผ่นดิน 2026</p>
+            <p style="font-size: 0.95rem; opacity: 0.8; font-style: italic;">Youth Hackathon Inspired by the Royal
+                Initiatives of the Queen Mother</p>
 
             <div class="event-meta">
                 <div class="event-meta-item">
-                    <i class="fas fa-university"></i>
-                    <span>มหาวิทยาลัยมหาสารคาม</span>
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>2 ก.พ. - 5 ส.ค. 2569</span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>ชิงรางวัลรวมกว่า 1 ล้านบาท</span>
                 </div>
                 <div class="event-meta-item">
                     <i class="fas fa-users"></i>
-                    <span>นิสิต นักศึกษาปริญญาตรี ทุกมหาวิทยาลัย</span>
-                </div>
-                <div class="event-meta-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>นวัตกรรมเพื่อพัฒนาชุมชน</span>
+                    <span>ทีมละ 5 คน</span>
                 </div>
             </div>
         </div>
@@ -160,30 +217,114 @@
                     <!-- About -->
                     <div class="info-box">
                         <h4><i class="fas fa-info-circle"></i> เกี่ยวกับโครงการ</h4>
-                        <p><strong>ฮักแม่ Hackathon "สืบสานมรดกแม่แห่งแผ่นดิน สู่เศรษฐกิจชุมชน"</strong></p>
-                        <p>ขอเชิญชวนนิสิต นักศึกษาระดับปริญญาตรีจากทุกมหาวิทยาลัย
-                            ร่วมส่งแนวคิดนวัตกรรมเพื่อพัฒนาชุมชนไทย
-                            โดยน้อมนำพระราชดำริ สืบสานมรดกแม่แห่งแผ่นดิน</p>
-                        <p><strong>จัดโดย:</strong> มหาวิทยาลัยมหาสารคาม (MSU)</p>
-                        <p><strong>วัตถุประสงค์:</strong> สร้างแนวคิดนวัตกรรมที่เชื่อมโยงมรดกทางวัฒนธรรมกับเศรษฐกิจชุมชน
-                            เพื่อพัฒนาชุมชนไทยอย่างยั่งยืน</p>
+                        <p>โครงการนี้จัดขึ้นด้วยความสำนึกในพระมหากรุณาธิคุณอันหาที่สุดมิได้ และเพื่อน้อมนำแนวพระราชดำริ
+                            รวมถึงพระราชกรณียกิจอันทรงคุณค่าของ <strong>สมเด็จพระนางเจ้าสิริกิติ์
+                                พระบรมราชชนนีพันปีหลวง</strong>
+                            มาเป็นกรอบแนวคิดในการศึกษา ถ่ายทอด และต่อยอดสู่การพัฒนาเชิงรูปธรรม
+                            โดยเปิดโอกาสให้เยาวชน นิสิต และนักศึกษา
+                            ได้มีส่วนร่วมในการเรียนรู้และสร้างสรรค์
+                            อันจะก่อให้เกิดประโยชน์ต่อสังคมและประเทศชาติสืบไป</p>
+                        <p>ตลอดระยะเวลาที่ทรงปฏิบัติพระราชกรณียกิจ
+                            พระองค์ทรงอุทิศพระวรกายและพระราชหฤทัยในการบำบัดทุกข์ บำรุงสุข
+                            และยกระดับคุณภาพชีวิตของพสกนิกรชาวไทยอย่างต่อเนื่อง
+                            พระราชกรณียกิจนานัปการที่ทรงริเริ่มและทรงส่งเสริม ครอบคลุมทั้งด้านการพัฒนาอาชีพ
+                            การอนุรักษ์ทรัพยากรธรรมชาติ ศิลปวัฒนธรรม และภูมิปัญญาท้องถิ่น
+                            ตลอดจนการเสริมสร้างความมั่นคงทางสังคมและเศรษฐกิจของประเทศ
+                            อันเป็นรากฐานสำคัญของการพัฒนาอย่างยั่งยืน</p>
                     </div>
 
-                    <!-- Concept -->
+                    <!-- Objective -->
                     <div class="info-box">
-                        <h4><i class="fas fa-leaf"></i> แนวคิดหลัก</h4>
+                        <h4><i class="fas fa-bullseye"></i> วัตถุประสงค์</h4>
+                        <p>มุ่งส่งเสริมให้เยาวชนระดับมหาวิทยาลัยทั่วประเทศร่วมพัฒนาแนวคิดนวัตกรรมผ่านการประยุกต์ใช้
+                            <strong>ปัญญาประดิษฐ์ (AI)</strong> และ <strong>กระบวนการคิดเชิงออกแบบ (Design
+                                Sprint)</strong>
+                            เพื่อนำแนวทางพระราชดำริของสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชชนนีพันปีหลวง
+                            มาต่อยอดสู่การแก้ไขปัญหาสังคมยุคดิจิทัลอย่างสร้างสรรค์และยั่งยืน
+                        </p>
                         <div
-                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
-                            <div class="heritage-card">
-                                <h5>มรดกแม่แห่งแผ่นดิน</h5>
-                                <h4><i class="fas fa-crown"></i> สืบสาน</h4>
-                                <p>น้อมนำพระราชดำริเพื่อการอนุรักษ์และพัฒนามรดกทางวัฒนธรรมของแผ่นดินไทย</p>
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(27, 94, 32, 0.1); border-radius: 8px; border-left: 4px solid #1b5e20;">
+                            <p style="margin: 0; font-size: 0.9rem;">
+                                <strong>📅 ระยะเวลาโครงการ:</strong> 2 กุมภาพันธ์ 2569 – 5 สิงหาคม 2569
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hackathon Themes -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-palette"></i> หัวข้อการแข่งขัน (Hackathon Themes)</h4>
+                        <p>มุ่งเน้นการน้อมนำพระราชกรณียกิจและพระราชดำริ มาประยุกต์ใช้ผ่านกระบวนการนวัตกรรม เทคโนโลยี
+                            และความคิดสร้างสรรค์ เพื่อพัฒนาแนวคิดที่สามารถสร้างประโยชน์ต่อสังคม ชุมชน
+                            และการใช้ชีวิตของประชาชน</p>
+                        <p style="margin-top: 0.75rem;"><strong>เลือกพัฒนาแนวคิดภายใต้ 1 ใน 3 ธีมหลัก:</strong></p>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div class="theme-card">
+                                <h5>Theme 1</h5>
+                                <h4><i class="fas fa-tree"></i> Society & Environment</h4>
+                                <p>ชุมชน สิ่งแวดล้อม และคุณภาพชีวิต</p>
                             </div>
-                            <div class="heritage-card">
-                                <h5>เศรษฐกิจชุมชน</h5>
-                                <h4><i class="fas fa-store"></i> พัฒนา</h4>
-                                <p>สร้างนวัตกรรมที่ส่งเสริมเศรษฐกิจชุมชนให้เข้มแข็งและยั่งยืน</p>
+                            <div class="theme-card">
+                                <h5>Theme 2</h5>
+                                <h4><i class="fas fa-paint-brush"></i> Creativity</h4>
+                                <p>วัฒนธรรม ภูมิปัญญา และเศรษฐกิจสร้างสรรค์</p>
                             </div>
+                            <div class="theme-card">
+                                <h5>Theme 3</h5>
+                                <h4><i class="fas fa-city"></i> Urban Living</h4>
+                                <p>สังคมเมือง การใช้ชีวิต และการพัฒนาอย่างยั่งยืน</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-route"></i> 🚀 Timeline การดำเนินโครงการ</h4>
+
+                        <div class="timeline-step active">
+                            <div class="step-date">📅 2 - 28 กุมภาพันธ์ 2569</div>
+                            <div class="step-title">🏆 เปิดรับสมัคร</div>
+                            <div class="step-desc">ส่งแบบฟอร์มพร้อมไฟล์ Presentation ภายใน 28 ก.พ. 2569 เวลา 23.59 น.
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 20 มีนาคม 2569</div>
+                            <div class="step-title">ประกาศผล 20 ทีมเข้ารอบ Bootcamp</div>
+                            <div class="step-desc">ประกาศผ่านช่องทาง Social Media</div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 3 - 5 เมษายน 2569</div>
+                            <div class="step-title">🏕️ Bootcamp & Pitching</div>
+                            <div class="step-desc">20 ทีมแข่งขันคัดเลือกเหลือ 10 ทีม<br>
+                                📍 ณ ศูนย์ฝึกอบรมธนาคารกรุงไทยเขาใหญ่</div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 มิถุนายน 2569 (TBC)</div>
+                            <div class="step-title">💻 Final Coaching & Prototype Review (Online)</div>
+                            <div class="step-desc">สำหรับ 10 ทีมสุดท้าย</div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 กรกฎาคม 2569 (TBC)</div>
+                            <div class="step-title">🎤 Demo Day and Award Ceremony (Onsite)</div>
+                            <div class="step-desc">คัดเลือก 3 ทีมสุดท้าย<br>
+                                📍 ณ ธนาคารกรุงไทย สำนักงานใหญ่</div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 24 - 25 กรกฎาคม 2569 (TBC)</div>
+                            <div class="step-title">🏆 ประกาศผลทีมที่ได้รับรางวัล</div>
+                            <div class="step-desc">3 ทีมสุดท้าย<br>
+                                📍 ณ ธนาคารกรุงไทย สำนักงานใหญ่</div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-date">📅 5 - 9 สิงหาคม 2569 (TBC)</div>
+                            <div class="step-title">🎖️ พิธีรับรางวัล (Onsite)</div>
+                            <div class="step-desc">📍 ณ งาน อว.แฟร์ 2569</div>
                         </div>
                     </div>
 
@@ -191,14 +332,63 @@
                     <div class="info-box">
                         <h4><i class="fas fa-user-check"></i> คุณสมบัติผู้สมัคร</h4>
                         <ul style="margin-left: 1.5rem;">
-                            <li>นิสิต นักศึกษาระดับปริญญาตรี</li>
-                            <li>จากทุกมหาวิทยาลัยทั่วประเทศ</li>
-                            <li>มีความสนใจในการพัฒนานวัตกรรมเพื่อชุมชน</li>
+                            <li>เป็นนิสิต / นักศึกษา ระดับปริญญาตรีจากมหาวิทยาลัยทั่วประเทศ</li>
+                            <li>สมัครเป็นทีม ทีมละ <strong>5 คน</strong> (ต้องมาจากสถาบันเดียวกัน)</li>
                         </ul>
+                    </div>
+
+                    <!-- Registration Details -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-clipboard-list"></i> รายละเอียดการสมัคร</h4>
+                        <ol style="margin-left: 1.5rem;">
+                            <li style="margin-bottom: 0.75rem;">ในการกรอกแบบฟอร์ม ให้แต่ละทีมมอบหมาย
+                                <strong>ตัวแทนทีม 1 คน</strong> เป็นผู้กรอกรายละเอียดทั้งหมด
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">ผู้สมัครต้อง<strong>แนบไฟล์ Presentation</strong>
+                                ที่นำเสนอแนวคิดโครงการ ซึ่งต้องสอดคล้องกับ 3 ธีมหลัก
+                                เพื่อใช้ประกอบการพิจารณาคัดเลือก <strong>20 ทีมสุดท้าย</strong> เข้าร่วมรอบ Bootcamp
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">กรุณาส่งแบบฟอร์มและกรอกข้อมูลให้ครบถ้วน
+                                พร้อมแนบไฟล์ประกอบ</li>
+                        </ol>
                         <div
-                            style="margin-top: 1rem; padding: 1rem; background: rgba(27, 94, 32, 0.1); border-radius: 8px; border-left: 4px solid #1b5e20;">
-                            <p style="margin: 0; font-size: 0.9rem;"><strong>รูปแบบ:</strong>
-                                ส่งแนวคิดนวัตกรรมเพื่อพัฒนาชุมชนไทย</p>
+                            style="padding: 1rem; background: rgba(244, 67, 54, 0.1); border-radius: 8px; border-left: 4px solid #f44336;">
+                            <p style="margin: 0; font-weight: 600; color: #f44336;">⚠️ ส่งภายในวันที่ 28 กุมภาพันธ์ 2569
+                                เวลา 23.59 น. (เวลาประเทศไทย)</p>
+                        </div>
+                    </div>
+
+                    <!-- Judging Criteria -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-gavel"></i> เกณฑ์การตัดสิน (รอบคัดเลือก 20 ทีม)</h4>
+                        <div class="criteria-item">
+                            <strong>เทคโนโลยีและนวัตกรรม (30%)</strong>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--gray-600);">
+                                ความใหม่ ความแตกต่าง การต่อยอด และการแก้ปัญหาอย่างสร้างสรรค์</p>
+                        </div>
+                        <div class="criteria-item">
+                            <strong>ศักยภาพเชิงธุรกิจและตลาด (30%)</strong>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--gray-600);">
+                                ความต้องการของผู้ใช้ โมเดลธุรกิจ ความคุ้มค่า และโอกาสเติบโต</p>
+                        </div>
+                        <div class="criteria-item">
+                            <strong>กลยุทธ์การดำเนินงาน (25%)</strong>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--gray-600);">
+                                แผนงานชัดเจน พัฒนาต้นแบบได้จริง และบริหารความเสี่ยงได้</p>
+                        </div>
+                        <div class="criteria-item">
+                            <strong>รูปแบบและความเหมาะสมของ Presentation (15%)</strong>
+                        </div>
+                    </div>
+
+                    <!-- Prizes -->
+                    <div class="info-box">
+                        <h4><i class="fas fa-gift"></i> สิทธิประโยชน์สำหรับผู้เข้าร่วม</h4>
+                        <div class="prize-box">
+                            <div class="prize-amount">🏆 ชิงเงินรางวัลรวมกว่า 1,000,000 บาท</div>
+                            <div class="prize-bonus">
+                                ✈️ 3 ทีมสุดท้าย ดูงาน ณ Huawei เมืองเซินเจิ้น ประเทศจีน 🧧🍜
+                            </div>
                         </div>
                     </div>
 
@@ -208,15 +398,28 @@
                 <div class="event-sidebar">
                     <div class="info-box"
                         style="background: linear-gradient(135deg, #0d2818, #1a3a25); border: 1px solid rgba(200, 164, 21, 0.3);">
-                        <h4 style="color: #ffd54f;"><i class="fas fa-rocket"></i> สนใจเข้าร่วม!</h4>
+                        <h4 style="color: #ffd54f;"><i class="fas fa-rocket"></i> สมัครเลย!</h4>
                         <a href="https://www.facebook.com/MahasarakhamUniversity.MSU/posts/937579195900982/"
                             target="_blank" class="btn btn-primary"
                             style="width: 100%; background: linear-gradient(135deg, #1b5e20, #c8a415); border: none; margin-bottom: 1rem;">
-                            <i class="fab fa-facebook"></i> ดูรายละเอียดบน Facebook
+                            <i class="fab fa-facebook"></i> ดูรายละเอียดและสมัคร
                         </a>
                         <p style="color: #a5d6a7; font-size: 0.85rem; margin: 0;">
-                            <i class="fas fa-flag"></i> เปิดรับสมัครแล้ว!
+                            <i class="fas fa-clock"></i> ปิดรับสมัคร: 28 ก.พ. 2569 เวลา 23.59 น.
                         </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-calendar-check"></i> กำหนดการสำคัญ</h4>
+                        <ul class="info-list" style="font-size: 0.85rem;">
+                            <li><i class="fas fa-play" style="color: #1b5e20;"></i> 2 ก.พ. เปิดรับสมัคร</li>
+                            <li><i class="fas fa-stop" style="color: #f44336;"></i> 28 ก.พ. ปิดรับสมัคร</li>
+                            <li><i class="fas fa-bullhorn" style="color: #c8a415;"></i> 20 มี.ค. ประกาศ 20 ทีม</li>
+                            <li><i class="fas fa-campground" style="color: #1b5e20;"></i> 3-5 เม.ย. Bootcamp</li>
+                            <li><i class="fas fa-laptop" style="color: #1b5e20;"></i> มิ.ย. Final Coaching</li>
+                            <li><i class="fas fa-microphone" style="color: #c8a415;"></i> ก.ค. Demo Day</li>
+                            <li><i class="fas fa-trophy" style="color: #c8a415;"></i> 5-9 ส.ค. พิธีรับรางวัล</li>
+                        </ul>
                     </div>
 
                     <div class="info-box">
@@ -242,22 +445,24 @@
                     </div>
 
                     <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> ข้อมูลเพิ่มเติม</h4>
+                        <ul class="info-list">
+                            <li><i class="fas fa-users"></i> ทีมละ 5 คน (สถาบันเดียวกัน)</li>
+                            <li><i class="fas fa-brain"></i> ใช้ AI + Design Sprint</li>
+                            <li><i class="fas fa-trophy"></i> รางวัลรวมกว่า 1 ล้านบาท</li>
+                            <li><i class="fas fa-plane"></i> ดูงาน Huawei เซินเจิ้น</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
                         <h4><i class="fas fa-hashtag"></i> Hashtags</h4>
                         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                             <span class="badge msu-badge">#ฮักแม่Hackathon</span>
                             <span class="badge msu-badge">#MSU</span>
                             <span class="badge msu-badge">#มรดกแม่แห่งแผ่นดิน</span>
-                            <span class="badge msu-badge">#เศรษฐกิจชุมชน</span>
+                            <span class="badge msu-badge">#DesignSprint</span>
+                            <span class="badge msu-badge">#AI</span>
                         </div>
-                    </div>
-
-                    <div class="info-box">
-                        <h4><i class="fas fa-info-circle"></i> ข้อมูลเพิ่มเติม</h4>
-                        <ul class="info-list">
-                            <li><i class="fas fa-map-marker-alt"></i> จ.มหาสารคาม</li>
-                            <li><i class="fas fa-users"></i> ป.ตรี ทุกมหาวิทยาลัย</li>
-                            <li><i class="fas fa-lightbulb"></i> นวัตกรรมเพื่อชุมชน</li>
-                        </ul>
                     </div>
                 </div>
             </div>
