@@ -390,13 +390,13 @@
                 <p>รายการอีเว้นที่กำลังดำเนินการและที่ผ่านมา</p>
                 <div class="events-stats">
                     <div class="events-stat">
-                        <span class="stat-dot active"></span> กำลังดำเนินการ <strong>6</strong>
+                        <span class="stat-dot active"></span> กำลังดำเนินการ <strong>7</strong>
                     </div>
                     <div class="events-stat">
                         <span class="stat-dot completed"></span> เสร็จสิ้น <strong>2</strong>
                     </div>
                     <div class="events-stat">
-                        <span class="stat-dot cancelled"></span> ยกเลิก <strong>1</strong>
+                        <span class="stat-dot cancelled"></span> ยกเลิก/ตกรอบ <strong>2</strong>
                     </div>
                 </div>
             </div>
@@ -408,16 +408,16 @@
         <div class="container">
             <div class="filter-tabs">
                 <button class="filter-tab active" onclick="filterEvents('all')">
-                    <i class="fas fa-list"></i> ทั้งหมด <span class="tab-count">9</span>
+                    <i class="fas fa-list"></i> ทั้งหมด <span class="tab-count">11</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('active')">
-                    <i class="fas fa-fire"></i> กำลังดำเนินการ <span class="tab-count">6</span>
+                    <i class="fas fa-fire"></i> กำลังดำเนินการ <span class="tab-count">7</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('completed')">
                     <i class="fas fa-check-circle"></i> เสร็จสิ้น <span class="tab-count">2</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('cancelled')">
-                    <i class="fas fa-times-circle"></i> ยกเลิก <span class="tab-count">1</span>
+                    <i class="fas fa-times-circle"></i> ยกเลิก/ตกรอบ <span class="tab-count">2</span>
                 </button>
             </div>
         </div>
@@ -433,7 +433,7 @@
                     <i class="fas fa-fire"></i>
                 </div>
                 <h3 class="category-title">กำลังดำเนินการ</h3>
-                <span class="category-count">6 อีเว้น</span>
+                <span class="category-count">7 อีเว้น</span>
             </div>
 
             <div class="events-grid">
@@ -522,39 +522,7 @@
                     </div>
                 </div>
 
-                <!-- Event: School Satellite Competition 3 -->
-                <div class="card event-card card-active animate-fadeInUp" data-status="active">
-                    <div class="card-header">
-                        <div class="card-icon blue">
-                            <i class="fas fa-satellite"></i>
-                        </div>
-                        <div>
-                            <div class="card-title">School Satellite Competition 3</div>
-                            <div class="card-subtitle">GISTDA โครงการดาวเทียม CubeSat 6U</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>ทีม:</strong> RECE Space Team (ม.ราชภัฏสวนสุนันทา)</p>
-                        <p><strong>ตำแหน่ง:</strong> Structure & Power Engineer</p>
-                        <p><strong>จัดโดย:</strong> GISTDA (สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ)</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="badge badge-upcoming">
-                                <i class="fas fa-rocket"></i> ปี 2568-2569
-                            </span>
-                            <span class="badge badge-active">
-                                <i class="fas fa-map-marker-alt"></i> จ.ชลบุรี
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://www.gistda.or.th/" target="_blank" class="btn btn-outline btn-sm">
-                            <i class="fas fa-external-link-alt"></i> GISTDA
-                        </a>
-                        <a href="event-school-satellite.html" class="btn btn-primary btn-sm">
-                            <i class="fas fa-arrow-right"></i> รายละเอียด
-                        </a>
-                    </div>
-                </div>
+                <!-- Event: School Satellite Competition 3 - REMOVED from active, moved to cancelled -->
 
                 <!-- Event: AI Thailand Benchmark 2026 -->
                 <div class="card event-card card-active animate-fadeInUp" data-status="active">
@@ -665,6 +633,74 @@
                     </div>
                 </div>
 
+                <!-- Event: CodeCamp Thailand (BOI STEM+) -->
+                <div class="card event-card card-active animate-fadeInUp" data-status="active">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #193E65, #9DCDFF);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">CodeCamp Thailand</div>
+                            <div class="card-subtitle">DevSecOps with Generative AI Bootcamp</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ประเภท:</strong> หลักสูตรฝึกอบรม DevSecOps + AI (49 ชม.)</p>
+                        <p><strong>จัดโดย:</strong> BOI x สอวช. (BOI STEM+)</p>
+                        <p><strong>หน่วยฝึกอบรม:</strong> มหาวิทยาลัยราชภัฏสวนสุนันทา</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active">
+                                <i class="fas fa-laptop"></i> Online Training
+                            </span>
+                            <span class="badge"
+                                style="background: linear-gradient(135deg, #193E65, #9DCDFF); color: white;">
+                                <i class="fas fa-shield-alt"></i> DevSecOps
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://boistemplus.boi.go.th/course/2500edf9-25e8-4345-aeb9-93eff01a25f6"
+                            target="_blank" class="btn btn-outline btn-sm">
+                            <i class="fas fa-external-link-alt"></i> BOI STEM+
+                        </a>
+                        <a href="event-codecamp-thailand.html" class="btn btn-primary btn-sm"
+                            style="background: linear-gradient(135deg, #193E65, #9DCDFF); border: none;">
+                            <i class="fas fa-arrow-right"></i> รายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event: Next Tech Fiber Optic Seminar -->
+                <div class="card event-card card-active animate-fadeInUp" data-status="active">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #0a2463, #3da5d9);">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">Next Tech: Fiber Optic</div>
+                            <div class="card-subtitle">Fiber Optic Network Infrastructure for the Future</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ประเภท:</strong> สัมมนาออนไลน์ (Zoom)</p>
+                        <p><strong>หัวข้อ:</strong> Double Q Series — High Quality & Quick Response</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-upcoming">
+                                <i class="fas fa-calendar"></i> 11 มี.ค. 2569 | 09:00-12:00
+                            </span>
+                            <span class="badge badge-active">
+                                <i class="fas fa-users"></i> 1,000 ท่าน
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="event-nexttech-fiber.html" class="btn btn-primary btn-sm"
+                            style="background: linear-gradient(135deg, #0a2463, #3da5d9); border: none;">
+                            <i class="fas fa-arrow-right"></i> รายละเอียด
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
             <!-- ====== COMPLETED EVENTS ====== -->
@@ -765,8 +801,8 @@
                 <div class="category-icon cancelled-icon">
                     <i class="fas fa-times-circle"></i>
                 </div>
-                <h3 class="category-title">ยกเลิก</h3>
-                <span class="category-count">1 อีเว้น</span>
+                <h3 class="category-title">ยกเลิก/ตกรอบ</h3>
+                <span class="category-count">2 อีเว้น</span>
             </div>
 
             <div class="events-grid">
@@ -808,6 +844,45 @@
                             <i class="fas fa-external-link-alt"></i> เว็บไซต์
                         </a>
                         <a href="event-tniac.html" class="btn btn-primary btn-sm" style="opacity: 0.6;">
+                            <i class="fas fa-arrow-right"></i> รายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event: School Satellite Competition 3 - ตกรอบแรก -->
+                <div class="card event-card card-cancelled animate-fadeInUp" data-status="cancelled">
+                    <div class="card-status-ribbon cancelled-ribbon">
+                        <i class="fas fa-times"></i> ตกรอบ
+                    </div>
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">School Satellite Competition 3</div>
+                            <div class="card-subtitle">GISTDA โครงการดาวเทียม CubeSat 6U</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ทีม:</strong> RECE Space Team (ม.ราชภัฏสวนสุนันทา)</p>
+                        <p><strong>ตำแหน่ง:</strong> Structure & Power Engineer</p>
+                        <p><strong>จัดโดย:</strong> GISTDA</p>
+                        <div class="cancelled-reason">
+                            <i class="fas fa-info-circle"></i>
+                            ตกรอบแรก — ไม่ผ่านรอบคัดเลือก
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge badge-active" style="opacity: 0.6;">
+                                <i class="fas fa-rocket"></i> ปี 2568-2569
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.gistda.or.th/" target="_blank" class="btn btn-outline btn-sm"
+                            style="opacity: 0.6;">
+                            <i class="fas fa-external-link-alt"></i> GISTDA
+                        </a>
+                        <a href="event-school-satellite.html" class="btn btn-primary btn-sm" style="opacity: 0.6;">
                             <i class="fas fa-arrow-right"></i> รายละเอียด
                         </a>
                     </div>
