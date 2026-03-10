@@ -390,13 +390,13 @@
                 <p>รายการอีเว้นที่กำลังดำเนินการและที่ผ่านมา</p>
                 <div class="events-stats">
                     <div class="events-stat">
-                        <span class="stat-dot active"></span> กำลังดำเนินการ <strong>7</strong>
+                        <span class="stat-dot active"></span> กำลังดำเนินการ <strong>6</strong>
                     </div>
                     <div class="events-stat">
                         <span class="stat-dot completed"></span> เสร็จสิ้น <strong>2</strong>
                     </div>
                     <div class="events-stat">
-                        <span class="stat-dot cancelled"></span> ยกเลิก/ตกรอบ <strong>2</strong>
+                        <span class="stat-dot cancelled"></span> ยกเลิก/ตกรอบ <strong>3</strong>
                     </div>
                 </div>
             </div>
@@ -411,13 +411,13 @@
                     <i class="fas fa-list"></i> ทั้งหมด <span class="tab-count">11</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('active')">
-                    <i class="fas fa-fire"></i> กำลังดำเนินการ <span class="tab-count">7</span>
+                    <i class="fas fa-fire"></i> กำลังดำเนินการ <span class="tab-count">6</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('completed')">
                     <i class="fas fa-check-circle"></i> เสร็จสิ้น <span class="tab-count">2</span>
                 </button>
                 <button class="filter-tab" onclick="filterEvents('cancelled')">
-                    <i class="fas fa-times-circle"></i> ยกเลิก/ตกรอบ <span class="tab-count">2</span>
+                    <i class="fas fa-times-circle"></i> ยกเลิก/ตกรอบ <span class="tab-count">3</span>
                 </button>
             </div>
         </div>
@@ -433,7 +433,7 @@
                     <i class="fas fa-fire"></i>
                 </div>
                 <h3 class="category-title">กำลังดำเนินการ</h3>
-                <span class="category-count">7 อีเว้น</span>
+                <span class="category-count">6 อีเว้น</span>
             </div>
 
             <div class="events-grid">
@@ -490,6 +490,9 @@
 
                 <!-- Event: RTIPC -->
                 <div class="card event-card card-active animate-fadeInUp" data-status="active">
+                    <div class="card-status-ribbon active-ribbon">
+                        <i class="fas fa-paper-plane"></i> ส่งข้อเสนอแล้ว
+                    </div>
                     <div class="card-header">
                         <div class="card-icon blue">
                             <i class="fas fa-lightbulb"></i>
@@ -504,11 +507,12 @@
                         <p><strong>จัดโดย:</strong> มหาวิทยาลัยมหิดล</p>
                         <p><strong>สนับสนุนโดย:</strong> สสส.</p>
                         <div style="margin-top: 1rem;">
-                            <span class="badge badge-active">
-                                <i class="fas fa-flag"></i> เปิดรับสมัคร
+                            <span class="badge"
+                                style="background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3);">
+                                <i class="fas fa-check-circle"></i> ส่งข้อเสนอแล้ว
                             </span>
                             <span class="badge badge-upcoming">
-                                <i class="fas fa-trophy"></i> Final ที่ Siam Paragon
+                                <i class="fas fa-hourglass-half"></i> รอ 15 มี.ค. 69 ประกาศผล 10 Finalists
                             </span>
                         </div>
                     </div>
@@ -524,44 +528,14 @@
 
                 <!-- Event: School Satellite Competition 3 - REMOVED from active, moved to cancelled -->
 
-                <!-- Event: AI Thailand Benchmark 2026 -->
-                <div class="card event-card card-active animate-fadeInUp" data-status="active">
-                    <div class="card-header">
-                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div>
-                            <div class="card-title">AI Thailand Benchmark 2026</div>
-                            <div class="card-subtitle">เฟ้นหาสุดยอดนักพัฒนาโมเดล AI ไทย</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>รางวัล:</strong> 270,000 บาท (รวม 3 โจทย์)</p>
-                        <p><strong>ประเภท:</strong> แข่งขัน AI - Speech Recognition, NLP, LLM</p>
-                        <p><strong>จัดโดย:</strong> NECTEC / สวทช.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="badge badge-upcoming">
-                                <i class="fas fa-calendar"></i> แข่งขัน 8-28 มี.ค. 2569
-                            </span>
-                            <span class="badge"
-                                style="background: linear-gradient(135deg, #7c3aed, #3b82f6); color: white;">
-                                <i class="fas fa-laptop-code"></i> ออนไลน์
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://register.benchmark.ai.in.th/" target="_blank" class="btn btn-outline btn-sm">
-                            <i class="fas fa-external-link-alt"></i> สมัคร
-                        </a>
-                        <a href="event-ai-benchmark.html" class="btn btn-primary btn-sm"
-                            style="background: linear-gradient(135deg, #7c3aed, #3b82f6); border: none;">
-                            <i class="fas fa-arrow-right"></i> รายละเอียด
-                        </a>
-                    </div>
-                </div>
+                <!-- Event: AI Thailand Benchmark 2026 - MOVED to cancelled (ตกรอบโจทย์ 1) -->
+
 
                 <!-- Event: AI Engineering Skills & Hackathon -->
                 <div class="card event-card card-active animate-fadeInUp" data-status="active">
+                    <div class="card-status-ribbon active-ribbon">
+                        <i class="fas fa-book-open"></i> Phase 1
+                    </div>
                     <div class="card-header">
                         <div class="card-icon" style="background: linear-gradient(135deg, #0078d4, #5c2d91);">
                             <i class="fas fa-laptop-code"></i>
@@ -575,9 +549,23 @@
                         <p><strong>ประเภท:</strong> พัฒนาทักษะ AI + Hackathon</p>
                         <p><strong>จัดโดย:</strong> AIAT สนับสนุนโดย Microsoft</p>
                         <p><strong>สิ่งที่ได้:</strong> Microsoft Certifications + โอกาสงาน</p>
+                        <div class="phase-progress">
+                            <div class="phase-bar">
+                                <div class="phase-segment current"></div>
+                                <div class="phase-segment"></div>
+                                <div class="phase-segment"></div>
+                                <div class="phase-segment"></div>
+                            </div>
+                            <div class="phase-label">
+                                <span style="color: #f59e0b; font-weight: 600;">Phase 1 ◉</span>
+                                <span>Phase 2</span>
+                                <span>Phase 3</span>
+                                <span>Phase 4</span>
+                            </div>
+                        </div>
                         <div style="margin-top: 1rem;">
                             <span class="badge badge-active">
-                                <i class="fas fa-flag"></i> เปิดรับสมัคร
+                                <i class="fas fa-book-open"></i> Learn & Upskill
                             </span>
                             <span class="badge"
                                 style="background: linear-gradient(135deg, #0078d4, #5c2d91); color: white;">
@@ -802,7 +790,7 @@
                     <i class="fas fa-times-circle"></i>
                 </div>
                 <h3 class="category-title">ยกเลิก/ตกรอบ</h3>
-                <span class="category-count">2 อีเว้น</span>
+                <span class="category-count">3 อีเว้น</span>
             </div>
 
             <div class="events-grid">
@@ -883,6 +871,47 @@
                             <i class="fas fa-external-link-alt"></i> GISTDA
                         </a>
                         <a href="event-school-satellite.html" class="btn btn-primary btn-sm" style="opacity: 0.6;">
+                            <i class="fas fa-arrow-right"></i> รายละเอียด
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event: AI Thailand Benchmark 2026 - ตกรอบโจทย์ 1 -->
+                <div class="card event-card card-cancelled animate-fadeInUp" data-status="cancelled">
+                    <div class="card-status-ribbon cancelled-ribbon">
+                        <i class="fas fa-times"></i> ตกรอบโจทย์ 1
+                    </div>
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">AI Thailand Benchmark 2026</div>
+                            <div class="card-subtitle">เฟ้นหาสุดยอดนักพัฒนาโมเดล AI ไทย</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>รางวัล:</strong> 270,000 บาท (รวม 3 โจทย์)</p>
+                        <p><strong>ประเภท:</strong> แข่งขัน AI - Speech Recognition, NLP, LLM</p>
+                        <p><strong>จัดโดย:</strong> NECTEC / สวทช.</p>
+                        <div class="cancelled-reason">
+                            <i class="fas fa-info-circle"></i>
+                            ตกรอบโจทย์ที่ 1 (LOTUSDIS) — รอประกาศรับสมัครโจทย์ที่ 2
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <span class="badge"
+                                style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3);">
+                                <i class="fas fa-hourglass-half"></i> รอโจทย์ 2: เม.ย. 69
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://benchmark.ai.in.th/" target="_blank" class="btn btn-outline btn-sm"
+                            style="opacity: 0.8;">
+                            <i class="fas fa-external-link-alt"></i> เว็บไซต์
+                        </a>
+                        <a href="event-ai-benchmark.html" class="btn btn-primary btn-sm"
+                            style="background: linear-gradient(135deg, #7c3aed, #3b82f6); border: none; opacity: 0.8;">
                             <i class="fas fa-arrow-right"></i> รายละเอียด
                         </a>
                     </div>
